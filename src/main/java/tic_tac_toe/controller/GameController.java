@@ -1,8 +1,10 @@
-package tic_tac_toe;
+package tic_tac_toe.controller;
+
+import tic_tac_toe.Messages;
 
 import java.util.Scanner;
 
-class GameController {
+public class GameController {
 
     /*VARIABLES*/
     private Messages messages = new Messages();
@@ -11,11 +13,10 @@ class GameController {
     private String userSymbol;
     private String computerSymbol;
     private String level;
-    private BoardController boardController;
     private Boolean playAgain;
 
     /*PARSER*/
-    void run() {
+    public void run() {
         messages.logo();
         do {
             setupGame();
@@ -82,7 +83,8 @@ class GameController {
     }
 
     private void play() {
-        boardController.playWithParameters(scanner, messages, userSymbol, computerSymbol, level);
+        BoardController boardController = new BoardController(messages, scanner, exceptionController, userSymbol, computerSymbol, level);
+        boardController.playByStrategy();
     }
 
 
