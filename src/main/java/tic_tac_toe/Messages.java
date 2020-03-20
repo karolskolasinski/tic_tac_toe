@@ -13,4 +13,8 @@ class Messages {
     public void chooseLevel() {
 
     }
+
+    public void playAgain() {
+
+    }
 }

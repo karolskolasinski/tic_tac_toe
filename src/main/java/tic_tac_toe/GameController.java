@@ -12,31 +12,31 @@ class GameController {
     private String computerSymbol;
     private String level;
     private BoardController boardController;
-    private String playAgain;
+    private Boolean playAgain;
 
-
+    /*PARSER*/
     void run() {
         messages.logo();
-        boolean flag;
         do {
             setupGame();
             play();
-            flag = playAgain();
-        } while (!flag);
+            playAgain();
+        } while (!playAgain);
     }
 
-    private boolean playAgain() {
-        playAgain = null;
-        while (playAgain == null) {
+    /*METHODS*/
+    private void playAgain() {
+        messages.playAgain();
+        this.playAgain = null;
+        while (this.playAgain == null) {
             String playAgain = scanner.nextLine();
             try {
-
-
+                exceptionController.again(playAgain);
+                this.playAgain = playAgain.equalsIgnoreCase("yes");
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
             }
         }
-
     }
 
     private void setupGame() {
@@ -47,8 +47,8 @@ class GameController {
     }
 
     private void assignLevel() {
-        level = null;
-        while (level == null) {
+        this.level = null;
+        while (this.level == null) {
             String level = scanner.nextLine();
             try {
                 exceptionController.level(level);
@@ -60,13 +60,12 @@ class GameController {
     }
 
     private void assignSymbols() {
-        userSymbol = null;
-        while (userSymbol == null) {
+        this.userSymbol = null;
+        while (this.userSymbol == null) {
             String userSymbol = scanner.nextLine().toUpperCase();
             try {
                 exceptionController.symbol(userSymbol);
                 this.userSymbol = userSymbol;
-
                 switch (this.userSymbol) {
                     case "O":
                         computerSymbol = "X";
@@ -82,8 +81,8 @@ class GameController {
 
     }
 
-    private boolean play() {
-        return boardController.playWithParameters(userSymbol, computerSymbol, level);
+    private void play() {
+        boardController.playWithParameters(scanner, messages, userSymbol, computerSymbol, level);
     }
 
 

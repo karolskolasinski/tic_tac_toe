@@ -13,4 +13,10 @@ class ExceptionController {
             throw new IllegalArgumentException("You can choose only 1 or 2 or 3");
         }
     }
+
+    void again(String playAgain) {
+        if (!playAgain.equals("yes") && !playAgain.equals("no")) {
+            throw new IllegalArgumentException("You can choose only \"yes\" or \"no\"");
+        }
+    }
 }
