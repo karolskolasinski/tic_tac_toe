@@ -1,5 +1,7 @@
 package tic_tac_toe.controller;
 
+import java.util.Map;
+
 class ExceptionController {
 
     void wrongSymbolSelected(String userSymbol) {
@@ -26,8 +28,8 @@ class ExceptionController {
         }
     }
 
-    void choosedFieldIsAlreadySelected(String field) {
-        if (!field.isEmpty()) {
+    void chosedFieldIsAlreadySelected(Map<Integer, String> board, int userChoice) {
+        if (!board.get(userChoice).equals("")) {
             throw new IllegalArgumentException("This field is already taken");
         }
     }
