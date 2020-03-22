@@ -17,7 +17,7 @@ class ExceptionController {
     }
 
     void wrongPlayAgainAnswerSelected(String playAgain) {
-        if (!playAgain.equals("yes") && !playAgain.equals("no")) {
+        if (!playAgain.equalsIgnoreCase("yes") && !playAgain.equalsIgnoreCase("no")) {
             throw new IllegalArgumentException("You can choose only \"yes\" or \"no\"");
         }
     }

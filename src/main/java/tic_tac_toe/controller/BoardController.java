@@ -84,9 +84,31 @@ class BoardController {
         board.replace(choice, symbol);
     }
 
-    //todo
     private boolean gameStatus() {
+        /*horizontal*/
+        if (checkLine(0, 1, 2)) return true;
+        if (checkLine(3, 4, 5)) return true;
+        if (checkLine(6, 7, 8)) return true;
 
+        /*vertical*/
+        if (checkLine(0, 3, 6)) return true;
+        if (checkLine(1, 4, 7)) return true;
+        if (checkLine(2, 5, 8)) return true;
+
+        /*diagonal*/
+        if (checkLine(0, 4, 8)) return true;
+        return checkLine(2, 4, 6);
+    }
+
+    private boolean checkLine(int a, int b, int c) {
+        if (board.get(a).equals(board.get(b)) && board.get(a).equals(board.get(c)) && !board.get(a).equals(" ")) {
+            if (board.get(a).equals(userSymbol)) {
+                messages.youWon();
+            } else {
+                messages.youLost();
+            }
+            return true;
+        }
         return false;
     }
 

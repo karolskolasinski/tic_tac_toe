@@ -22,7 +22,7 @@ public class GameController {
             setupGame();
             play();
             playAgain();
-        } while (!playAgain);
+        } while (playAgain);
     }
 
     /*METHODS*/
@@ -45,6 +45,7 @@ public class GameController {
         assignSymbols();
         messages.chooseLevel();
         assignLevel();
+        messages.begin();
     }
 
     private void assignLevel() {

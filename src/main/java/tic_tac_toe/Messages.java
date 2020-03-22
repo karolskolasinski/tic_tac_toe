@@ -21,6 +21,9 @@ public class Messages {
     private String chooseLevel = "Select level (1 or 2 or 3):";
     private String playAgain = "Do you wanna play again?";
     private String userChoice = "Choice field (1 to 9):";
+    private String letsPlay = "OK! Let's play!\n";
+    private String youWon = "YOU WON!";
+    private String youLost = "YOU LOST!";
 
     public void logo() {
         System.out.println(logo);
@@ -33,7 +36,6 @@ public class Messages {
 
     public void chooseLevel() {
         System.out.println(chooseLevel);
-
     }
 
     public void playAgain() {
@@ -50,5 +52,17 @@ public class Messages {
 
     public void userChoice() {
         System.out.println(userChoice);
+    }
+
+    public void begin() {
+        System.out.println(letsPlay);
+    }
+
+    public void youWon() {
+        System.out.println(youWon);
+    }
+
+    public void youLost() {
+        System.out.println(youLost);
     }
 }
