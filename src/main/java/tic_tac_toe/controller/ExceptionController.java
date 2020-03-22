@@ -19,4 +19,10 @@ class ExceptionController {
             throw new IllegalArgumentException("You can choose only \"yes\" or \"no\"");
         }
     }
+
+    void field(String userChoice) {
+        if (userChoice.length() != 1) {
+            throw new IllegalArgumentException("You can choose only fields 1 to 9");
+        }
+    }
 }

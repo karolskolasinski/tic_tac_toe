@@ -79,7 +79,6 @@ public class GameController {
                 System.err.println(iae.getMessage());
             }
         }
-
     }
 
     private void play() {

@@ -6,7 +6,7 @@ public class Easy implements GameLevel {
 
     //todo
     @Override
-    public String[][] computerChoose(String[][] board, String computerSymbol) {
+    public String[][] computerChoice(String[][] board, String computerSymbol) {
 
         return new String[0][];
     }

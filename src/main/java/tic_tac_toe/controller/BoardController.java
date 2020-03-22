@@ -17,6 +17,7 @@ class BoardController {
     private String userSymbol;
     private String computerSymbol;
     private String level;
+    private int userChoice;
 
     BoardController(Messages messages, Scanner scanner, ExceptionController exceptionController, String userSymbol, String computerSymbol, String level) {
         this.messages = messages;
@@ -35,16 +36,28 @@ class BoardController {
         boolean gameEnd = false;
         do {
             messages.drawBoard(board);
-            userTick();
-            board = gameLevel.computerChoose(board, computerSymbol);
+            messages.userChoice();
+            userChoice();
+            board = gameLevel.computerChoice(board, computerSymbol);
             gameEnd = gameStatus();
         } while (!gameEnd);
     }
 
-    //todo
-    private void userTick() {
-
-
+    private void userChoice() {
+        this.userChoice = -1;
+        while (this.userChoice == -1) {
+            String userChoice = scanner.nextLine();
+            try {
+                exceptionController.field(userChoice);
+                this.userChoice = Integer.parseInt(userChoice);
+            } catch (IllegalArgumentException iae) {
+                if (iae instanceof NumberFormatException) {
+                    System.err.println("You have to provide number only");
+                } else {
+                    System.err.println(iae.getMessage());
+                }
+            }
+        }
     }
 
     //todo

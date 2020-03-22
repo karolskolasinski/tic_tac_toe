@@ -12,6 +12,7 @@ public class Messages {
     private String chooseSymbol = "Select your symbol (O or X):";
     private String chooseLevel = "Select level (1 or 2 or 3):";
     private String playAgain = "Do you wanna play again?";
+    private String userChoice = "Choice field (1 to 9):";
 
     public void logo() {
         System.out.println(logo);
@@ -33,5 +34,9 @@ public class Messages {
     //todo
     public void drawBoard(String[][] board) {
 
+    }
+
+    public void userChoice() {
+        System.out.println(userChoice);
     }
 }
