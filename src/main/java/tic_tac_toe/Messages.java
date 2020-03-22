@@ -24,6 +24,7 @@ public class Messages {
     private String letsPlay = "OK! Let's play!\n";
     private String youWon = "YOU WON!";
     private String youLost = "YOU LOST!";
+    private String itIsADraw = "IT'S A DRAW!";
 
     public void logo() {
         System.out.println(logo);
@@ -64,5 +65,9 @@ public class Messages {
 
     public void youLost() {
         System.out.println(youLost);
+    }
+
+    public void itIsADraw() {
+        System.out.println(itIsADraw);
     }
 }

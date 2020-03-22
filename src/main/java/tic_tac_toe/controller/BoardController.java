@@ -97,7 +97,18 @@ class BoardController {
 
         /*diagonal*/
         if (checkLine(0, 4, 8)) return true;
-        return checkLine(2, 4, 6);
+        if (checkLine(2, 4, 6)) return true;
+
+        /*draw*/
+        return checkDraw();
+    }
+
+    private boolean checkDraw() {
+        if (!board.containsValue(" ")) {
+            messages.itIsADraw();
+            return true;
+        }
+        return false;
     }
 
     private boolean checkLine(int a, int b, int c) {
