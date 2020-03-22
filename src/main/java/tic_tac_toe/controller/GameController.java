@@ -32,7 +32,7 @@ public class GameController {
         while (this.playAgain == null) {
             String playAgain = scanner.nextLine();
             try {
-                exceptionController.again(playAgain);
+                exceptionController.wrongPlayAgainAnswerSelected(playAgain);
                 this.playAgain = playAgain.equalsIgnoreCase("yes");
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
@@ -52,7 +52,7 @@ public class GameController {
         while (this.level == null) {
             String level = scanner.nextLine();
             try {
-                exceptionController.level(level);
+                exceptionController.wrongLevelSelected(level);
                 this.level = level;
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
@@ -65,7 +65,7 @@ public class GameController {
         while (this.userSymbol == null) {
             String userSymbol = scanner.nextLine().toUpperCase();
             try {
-                exceptionController.symbol(userSymbol);
+                exceptionController.wrongSymbolSelected(userSymbol);
                 this.userSymbol = userSymbol;
                 switch (this.userSymbol) {
                     case "O":
