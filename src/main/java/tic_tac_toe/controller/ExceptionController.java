@@ -23,13 +23,13 @@ class ExceptionController {
     }
 
     void wrongFieldNumberSelected(String userChoice) {
-        if (userChoice.length() != 1) {
+        if (userChoice.length() != 1 || userChoice.equals("0")) {
             throw new IllegalArgumentException("You can choose only fields 1 to 9");
         }
     }
 
     void chosedFieldIsAlreadySelected(Map<Integer, String> board, int userChoice) {
-        if (!board.get(userChoice).equals("")) {
+        if (!board.get(userChoice).equals(" ")) {
             throw new IllegalArgumentException("This field is already taken");
         }
     }

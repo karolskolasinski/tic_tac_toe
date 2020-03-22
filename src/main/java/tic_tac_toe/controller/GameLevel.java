@@ -1,6 +1,8 @@
 package tic_tac_toe.controller;
 
+import java.util.Map;
+
 public interface GameLevel {
 
-    String[][] computerChoice(String[][] board, String computerSymbol);
+    int computerChoice(Map<Integer, String> board);
 }

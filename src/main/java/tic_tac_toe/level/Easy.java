@@ -2,12 +2,19 @@ package tic_tac_toe.level;
 
 import tic_tac_toe.controller.GameLevel;
 
+import java.util.Map;
+import java.util.Random;
+
 public class Easy implements GameLevel {
 
-    //todo
-    @Override
-    public String[][] computerChoice(String[][] board, String computerSymbol) {
+    private Random random = new Random();
 
-        return new String[0][];
+    @Override
+    public int computerChoice(Map<Integer, String> board) {
+        int field;
+        do {
+            field = random.nextInt(9);
+        } while (!board.get(field).equals(" "));
+        return field;
     }
 }

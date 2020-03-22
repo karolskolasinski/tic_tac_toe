@@ -43,23 +43,30 @@ class BoardController {
     }
 
     private void playWithParameters() {
-        boolean gameEnd = false;
+        boolean gameEnd;
         do {
-            messages.userChoice();
             userChoice();
-//            board = gameLevel.computerChoice(board, computerSymbol);
+            computerChoice();
             messages.drawBoard(board);
             gameEnd = gameStatus();
         } while (!gameEnd);
     }
 
+    private void computerChoice() {
+        if (board.containsValue(" ")) {
+            int computerChoice = gameLevel.computerChoice(board);
+            applySymbol(computerChoice, computerSymbol);
+        }
+    }
+
     private void userChoice() {
+        messages.userChoice();
         this.userChoice = -1;
         while (this.userChoice == -1) {
             String userChoice = scanner.nextLine();
             try {
                 exceptionController.wrongFieldNumberSelected(userChoice);
-                this.userChoice = Integer.parseInt(userChoice);
+                this.userChoice = Integer.parseInt(userChoice) - 1;
                 exceptionController.chosedFieldIsAlreadySelected(board, this.userChoice);
                 applySymbol(this.userChoice, userSymbol);
             } catch (IllegalArgumentException iae) {
@@ -67,6 +74,7 @@ class BoardController {
                     System.err.println("You have to provide number only");
                 } else {
                     System.err.println(iae.getMessage());
+                    this.userChoice = -1;
                 }
             }
         }
@@ -75,7 +83,6 @@ class BoardController {
     private void applySymbol(int choice, String symbol) {
         board.replace(choice, symbol);
     }
-
 
     //todo
     private boolean gameStatus() {

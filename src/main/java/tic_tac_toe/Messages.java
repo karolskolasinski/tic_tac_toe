@@ -1,6 +1,5 @@
 package tic_tac_toe;
 
-import java.util.Arrays;
 import java.util.Map;
 
 public class Messages {
@@ -42,7 +41,7 @@ public class Messages {
     }
 
     public void drawBoard(Map<Integer, String> board) {
-        System.out.println(" " + board.get(0) + " | " + board.get(1) + " | " + board.get(2) + " \n" +
+        System.out.println("\n " + board.get(0) + " | " + board.get(1) + " | " + board.get(2) + " \n" +
                 "---+---+---\n" +
                 " " + board.get(3) + " | " + board.get(4) + " | " + board.get(5) + " \n" +
                 "---+---+---\n" +

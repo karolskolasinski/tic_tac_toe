@@ -2,11 +2,13 @@ package tic_tac_toe.level;
 
 import tic_tac_toe.controller.GameLevel;
 
+import java.util.Map;
+
 public class Medium implements GameLevel {
 
     @Override
-    public String[][] computerChoice(String[][] board, String computerSymbol) {
+    public int computerChoice(Map<Integer, String> board) {
 
-        return new String[0][];
+        return 0;
     }
 }
