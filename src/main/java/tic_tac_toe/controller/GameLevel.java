@@ -4,5 +4,5 @@ import java.util.Map;
 
 public interface GameLevel {
 
-    int computerChoice(Map<Integer, String> board);
+    int computerChoice(Map<Integer, String> board, String computerSymbol, String userSymbol);
 }

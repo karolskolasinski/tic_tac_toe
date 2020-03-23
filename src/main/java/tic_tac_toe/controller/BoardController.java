@@ -46,15 +46,15 @@ class BoardController {
         boolean gameEnd;
         do {
             userChoice();
-            computerChoice();
-            messages.drawBoard(board);
             gameEnd = gameStatus();
+            computerChoice(gameEnd);
+            messages.drawBoard(board);
         } while (!gameEnd);
     }
 
-    private void computerChoice() {
-        if (board.containsValue(" ")) {
-            int computerChoice = gameLevel.computerChoice(board);
+    private void computerChoice(boolean gameEnd) {
+        if (board.containsValue(" ") && !gameEnd) {
+            int computerChoice = gameLevel.computerChoice(board, computerSymbol, userSymbol);
             applySymbol(computerChoice, computerSymbol);
         }
     }

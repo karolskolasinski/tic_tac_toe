@@ -6,11 +6,9 @@ import java.util.Map;
 
 public class ChuckNorris implements GameLevel {
 
+
     @Override
-    public int computerChoice(Map<Integer, String> board) {
-
-
-
+    public int computerChoice(Map<Integer, String> board, String computerSymbol, String userSymbol) {
         return 0;
     }
 }

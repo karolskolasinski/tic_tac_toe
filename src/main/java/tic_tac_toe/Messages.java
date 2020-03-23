@@ -12,11 +12,11 @@ public class Messages {
             "    \\/_/   \\/_/  \\/_____/        \\/_/   \\/_/\\/_/  \\/_____/        \\/_/   \\/_____/  \\/_____/\n" +
             "                                                             by karolskolasinski@gmail.com\n";
     private String exampleBoard = "The board has 9 fields:\n\n" +
-            " 1 | 2 | 3 \n" +
+            " 0 | 1 | 2 \n" +
             "---+---+---\n" +
-            " 4 | 5 | 6 \n" +
+            " 3 | 4 | 5 \n" +
             "---+---+---\n" +
-            " 7 | 8 | 9 \n";
+            " 6 | 7 | 8 \n";
     private String chooseSymbol = "Select your symbol (O or X):";
     private String chooseLevel = "Select level (1 or 2 or 3):";
     private String playAgain = "Do you wanna play again?";
