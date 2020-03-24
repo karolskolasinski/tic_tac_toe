@@ -28,7 +28,7 @@ class ExceptionController {
         }
     }
 
-    void chosedFieldIsAlreadySelected(Map<Integer, String> board, int userChoice) {
+    void chosenFieldIsAlreadySelected(Map<Integer, String> board, int userChoice) {
         if (!board.get(userChoice).equals(" ")) {
             throw new IllegalArgumentException("This field is already taken");
         }

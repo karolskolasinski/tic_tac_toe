@@ -69,7 +69,7 @@ class BoardController {
             try {
                 exceptionController.wrongFieldNumberSelected(userChoice);
                 this.userChoice = Integer.parseInt(userChoice) - 1;
-                exceptionController.chosedFieldIsAlreadySelected(board, this.userChoice);
+                exceptionController.chosenFieldIsAlreadySelected(board, this.userChoice);
                 applySymbol(this.userChoice, userSymbol);
             } catch (IllegalArgumentException iae) {
                 if (iae instanceof NumberFormatException) {
