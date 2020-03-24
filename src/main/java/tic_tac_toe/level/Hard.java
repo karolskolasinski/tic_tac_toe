@@ -57,6 +57,7 @@ public class Hard implements GameLevel {
         String s1 = board.get(a);
         String s2 = board.get(b);
         String s3 = board.get(c);
+
         if (s1.equals(symbol) && s2.equals(symbol)) {
             return c;
         } else if (s1.equals(symbol) && s3.equals(symbol)) {
@@ -64,8 +65,8 @@ public class Hard implements GameLevel {
         } else if (s2.equals(symbol) && s3.equals(symbol)) {
             return a;
         }
+
         return -1;
     }
-
 
 }
