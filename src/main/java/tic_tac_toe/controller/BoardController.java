@@ -1,7 +1,7 @@
 package tic_tac_toe.controller;
 
 import tic_tac_toe.Messages;
-import tic_tac_toe.level.ChuckNorris;
+import tic_tac_toe.level.Hard;
 import tic_tac_toe.level.Easy;
 import tic_tac_toe.level.Medium;
 
@@ -43,13 +43,15 @@ class BoardController {
     }
 
     private void playWithParameters() {
-        boolean gameEnd;
-        do {
+        boolean gameEnd = false;
+        while (!gameEnd) {
             userChoice();
             gameEnd = gameStatus();
             computerChoice(gameEnd);
+            gameEnd = gameStatus();
             messages.drawBoard(board);
-        } while (!gameEnd);
+        }
+
     }
 
     private void computerChoice(boolean gameEnd) {
@@ -132,7 +134,7 @@ class BoardController {
                 setGameLevel(new Medium());
                 break;
             case "3":
-                setGameLevel(new ChuckNorris());
+                setGameLevel(new Hard());
                 break;
         }
         playWithParameters();
