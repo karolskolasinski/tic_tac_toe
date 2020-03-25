@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import tic_tac_toe.Messages;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
 class BoardControllerTest {
 
@@ -21,7 +21,7 @@ class BoardControllerTest {
     void endGameShouldBeFalse() {
         boolean status = boardController.gameStatus();
 
-        assertThat(status, equalTo(false));
+        assertThat(status, is(false));
     }
 
     @Test
@@ -32,7 +32,7 @@ class BoardControllerTest {
 
         boolean status = boardController.gameStatus();
 
-        assertThat(status, equalTo(true));
+        assertThat(status, is(true));
     }
 
 }
