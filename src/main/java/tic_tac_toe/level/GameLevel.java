@@ -1,4 +1,4 @@
-package tic_tac_toe.controller;
+package tic_tac_toe.level;
 
 import java.util.Map;
 

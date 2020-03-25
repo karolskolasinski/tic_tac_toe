@@ -1,6 +1,7 @@
 package tic_tac_toe.controller;
 
 import tic_tac_toe.Messages;
+import tic_tac_toe.level.GameLevel;
 import tic_tac_toe.level.Hard;
 import tic_tac_toe.level.Easy;
 import tic_tac_toe.level.Medium;
@@ -31,7 +32,11 @@ class BoardController {
         initializeBoard();
     }
 
-    private void initializeBoard() {
+    BoardController(Messages messages) {
+        this.messages = messages;
+    }
+
+    void initializeBoard() {
         board.clear();
         for (int i = 0; i < 9; i++) {
             board.put(i, " ");
@@ -51,7 +56,6 @@ class BoardController {
             gameEnd = gameStatus();
             messages.drawBoard(board);
         }
-
     }
 
     private void computerChoice(boolean gameEnd) {
@@ -82,11 +86,11 @@ class BoardController {
         }
     }
 
-    private void applySymbol(int choice, String symbol) {
+    void applySymbol(int choice, String symbol) {
         board.replace(choice, symbol);
     }
 
-    private boolean gameStatus() {
+    boolean gameStatus() {
         /*horizontal*/
         if (checkLine(0, 1, 2)) return true;
         if (checkLine(3, 4, 5)) return true;

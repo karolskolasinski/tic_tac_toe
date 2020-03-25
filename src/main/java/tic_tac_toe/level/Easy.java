@@ -1,7 +1,5 @@
 package tic_tac_toe.level;
 
-import tic_tac_toe.controller.GameLevel;
-
 import java.util.Map;
 import java.util.Random;
 
