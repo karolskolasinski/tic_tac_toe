@@ -9,7 +9,7 @@ public class GameController {
     /*VARIABLES*/
     private Messages messages = new Messages();
     private Scanner scanner = new Scanner(System.in);
-    private ExceptionController exceptionController = new ExceptionController();
+    private UserInputValidator userInputValidator = new UserInputValidator();
     private String userSymbol;
     private String computerSymbol;
     private String level;
@@ -17,7 +17,7 @@ public class GameController {
 
     /*PARSER*/
     public void run() {
-        messages.logo();
+        messages.displayLogo();
         do {
             setupGame();
             play();
@@ -27,12 +27,12 @@ public class GameController {
 
     /*METHODS*/
     private void playAgain() {
-        messages.playAgain();
+        messages.displayPlayAgainQuestion();
         this.playAgain = null;
         while (this.playAgain == null) {
             String playAgain = scanner.nextLine();
             try {
-                exceptionController.wrongPlayAgainAnswerSelected(playAgain);
+                userInputValidator.wrongPlayAgainAnswerSelected(playAgain);
                 this.playAgain = playAgain.equalsIgnoreCase("yes");
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
@@ -41,11 +41,11 @@ public class GameController {
     }
 
     private void setupGame() {
-        messages.chooseSymbol();
+        messages.displayChooseSymbolMessage();
         assignSymbols();
-        messages.chooseLevel();
+        messages.displayChooseLevelMessage();
         assignLevel();
-        messages.begin();
+        messages.displayBeginMessage();
     }
 
     private void assignLevel() {
@@ -53,7 +53,7 @@ public class GameController {
         while (this.level == null) {
             String level = scanner.nextLine();
             try {
-                exceptionController.wrongLevelSelected(level);
+                userInputValidator.wrongLevelSelected(level);
                 this.level = level;
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
@@ -66,7 +66,7 @@ public class GameController {
         while (this.userSymbol == null) {
             String userSymbol = scanner.nextLine().toUpperCase();
             try {
-                exceptionController.wrongSymbolSelected(userSymbol);
+                userInputValidator.wrongSymbolSelected(userSymbol);
                 this.userSymbol = userSymbol;
                 switch (this.userSymbol) {
                     case "O":
@@ -83,7 +83,7 @@ public class GameController {
     }
 
     private void play() {
-        BoardController boardController = new BoardController(messages, scanner, exceptionController, userSymbol, computerSymbol, level);
+        BoardController boardController = new BoardController(messages, scanner, userInputValidator, userSymbol, computerSymbol, level);
         boardController.playByStrategy();
     }
 

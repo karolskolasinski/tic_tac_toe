@@ -10,14 +10,14 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class ExceptionControllerTest {
+class UserInputValidatorTest {
 
-    private ExceptionController exceptionController = new ExceptionController();
+    private UserInputValidator userInputValidator = new UserInputValidator();
 
     @ParameterizedTest
     @MethodSource("wrongSymbol")
     void exceptionShouldBeThrownIfUserProvidedWrongSymbol(String symbol) {
-        assertThrows(IllegalArgumentException.class, () -> exceptionController.wrongSymbolSelected(symbol));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.wrongSymbolSelected(symbol));
     }
 
     private static Stream<Arguments> wrongSymbol() {
@@ -34,7 +34,7 @@ class ExceptionControllerTest {
     @ParameterizedTest
     @MethodSource("wrongLevel")
     void exceptionShouldBeThrownIfUserChosenWrongLevel(String level) {
-        assertThrows(IllegalArgumentException.class, () -> exceptionController.wrongLevelSelected(level));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.wrongLevelSelected(level));
     }
 
     private static Stream<Arguments> wrongLevel() {
@@ -49,7 +49,7 @@ class ExceptionControllerTest {
     @ParameterizedTest
     @MethodSource("wrongAnswer")
     void exceptionShouldBeThrownWhenWrongPlayAgainAnswerSelected(String answer) {
-        assertThrows(IllegalArgumentException.class, () -> exceptionController.wrongPlayAgainAnswerSelected(answer));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.wrongPlayAgainAnswerSelected(answer));
     }
 
     private static Stream<Arguments> wrongAnswer() {
@@ -66,7 +66,7 @@ class ExceptionControllerTest {
     @ParameterizedTest
     @MethodSource("wrongFieldNumber")
     void exceptionShouldBeThrownWhenWrongFieldNumberSelected(String field) {
-        assertThrows(IllegalArgumentException.class, () -> exceptionController.wrongFieldNumberSelected(field));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.wrongFieldNumberSelected(field));
     }
 
     private static Stream<Arguments> wrongFieldNumber() {
@@ -90,7 +90,7 @@ class ExceptionControllerTest {
         board.replace(0, "X");
         board.replace(1, "O");
 
-        assertThrows(IllegalArgumentException.class, () -> exceptionController.chosenFieldIsAlreadySelected(board, field));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.chosenFieldIsAlreadySelected(board, field));
     }
 
     private static Stream<Arguments> selectedField() {

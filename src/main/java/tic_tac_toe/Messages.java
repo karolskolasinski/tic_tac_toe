@@ -4,43 +4,33 @@ import java.util.Map;
 
 public class Messages {
 
-    private String logo = "\n" +
-            " ______   __    ______        ______   ______    ______        ______   ______    ______    \n" +
-            "/\\__  _\\ /\\ \\  /\\  ___\\      /\\__  _\\ /\\  __ \\  /\\  ___\\      /\\__  _\\ /\\  __ \\  /\\  ___\\   \n" +
-            "\\/_/\\ \\/ \\ \\ \\ \\ \\ \\____     \\/_/\\ \\/ \\ \\  __ \\ \\ \\ \\____     \\/_/\\ \\/ \\ \\ \\/\\ \\ \\ \\  __\\   \n" +
-            "   \\ \\_\\  \\ \\_\\ \\ \\_____\\       \\ \\_\\  \\ \\_\\ \\_\\ \\ \\_____\\       \\ \\_\\  \\ \\_____\\ \\ \\_____\\ \n" +
-            "    \\/_/   \\/_/  \\/_____/        \\/_/   \\/_/\\/_/  \\/_____/        \\/_/   \\/_____/  \\/_____/\n" +
-            "                                                             by karolskolasinski@gmail.com\n";
-    private String exampleBoard = "The board has 9 fields:\n\n" +
-            " 1 | 2 | 3 \n" +
-            "---+---+---\n" +
-            " 4 | 5 | 6 \n" +
-            "---+---+---\n" +
-            " 7 | 8 | 9 \n";
-    private String chooseSymbol = "Select your symbol (O or X):";
-    private String chooseLevel = "Select level (1 or 2 or 3):";
-    private String playAgain = "Do you wanna play again?";
-    private String userChoice = "Choice field (1 to 9):";
-    private String letsPlay = "OK! Let's play!\n";
-    private String youWon = "YOU WON!";
-    private String youLost = "YOU LOST!";
-    private String itIsADraw = "IT'S A DRAW!";
+    public void displayLogo() {
+        System.out.println("\n" +
+                " ______   __    ______        ______   ______    ______        ______   ______    ______    \n" +
+                "/\\__  _\\ /\\ \\  /\\  ___\\      /\\__  _\\ /\\  __ \\  /\\  ___\\      /\\__  _\\ /\\  __ \\  /\\  ___\\   \n" +
+                "\\/_/\\ \\/ \\ \\ \\ \\ \\ \\____     \\/_/\\ \\/ \\ \\  __ \\ \\ \\ \\____     \\/_/\\ \\/ \\ \\ \\/\\ \\ \\ \\  __\\   \n" +
+                "   \\ \\_\\  \\ \\_\\ \\ \\_____\\       \\ \\_\\  \\ \\_\\ \\_\\ \\ \\_____\\       \\ \\_\\  \\ \\_____\\ \\ \\_____\\ \n" +
+                "    \\/_/   \\/_/  \\/_____/        \\/_/   \\/_/\\/_/  \\/_____/        \\/_/   \\/_____/  \\/_____/\n" +
+                "                                                             by karolskolasinski@gmail.com\n");
 
-    public void logo() {
-        System.out.println(logo);
-        System.out.println(exampleBoard);
+        System.out.println("The board has 9 fields:\n\n" +
+                " 1 | 2 | 3 \n" +
+                "---+---+---\n" +
+                " 4 | 5 | 6 \n" +
+                "---+---+---\n" +
+                " 7 | 8 | 9 \n");
     }
 
-    public void chooseSymbol() {
-        System.out.println(chooseSymbol);
+    public void displayChooseSymbolMessage() {
+        System.out.println("Select your symbol (O or X):");
     }
 
-    public void chooseLevel() {
-        System.out.println(chooseLevel);
+    public void displayChooseLevelMessage() {
+        System.out.println("Select level (1 or 2 or 3):");
     }
 
-    public void playAgain() {
-        System.out.println(playAgain);
+    public void displayPlayAgainQuestion() {
+        System.out.println("Do you wanna play again?");
     }
 
     public void drawBoard(Map<Integer, String> board) {
@@ -51,23 +41,23 @@ public class Messages {
                 " " + board.get(6) + " | " + board.get(7) + " | " + board.get(8) + " \n");
     }
 
-    public void userChoice() {
-        System.out.println(userChoice);
+    public void displayUserChoiceOptions() {
+        System.out.println("Choice field (1 to 9):");
     }
 
-    public void begin() {
-        System.out.println(letsPlay);
+    public void displayBeginMessage() {
+        System.out.println("OK! Let's play!\n");
     }
 
-    public void youWon() {
-        System.out.println(youWon);
+    public void displayYouWonMessage() {
+        System.out.println("YOU WON!");
     }
 
-    public void youLost() {
-        System.out.println(youLost);
+    public void displayYouLostMessage() {
+        System.out.println("YOU LOST!");
     }
 
-    public void itIsADraw() {
-        System.out.println(itIsADraw);
+    public void displayItIsADrawMessage() {
+        System.out.println("IT'S A DRAW!");
     }
 }

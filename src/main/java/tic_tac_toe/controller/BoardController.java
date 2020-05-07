@@ -16,16 +16,15 @@ class BoardController {
     private Map<Integer, String> board = new HashMap<>(9);
     private Messages messages;
     private Scanner scanner;
-    private ExceptionController exceptionController;
+    private UserInputValidator userInputValidator;
     private String userSymbol;
     private String computerSymbol;
     private String level;
-    private int userChoice;
 
-    BoardController(Messages messages, Scanner scanner, ExceptionController exceptionController, String userSymbol, String computerSymbol, String level) {
+    BoardController(Messages messages, Scanner scanner, UserInputValidator userInputValidator, String userSymbol, String computerSymbol, String level) {
         this.messages = messages;
         this.scanner = scanner;
-        this.exceptionController = exceptionController;
+        this.userInputValidator = userInputValidator;
         this.userSymbol = userSymbol;
         this.computerSymbol = computerSymbol;
         this.level = level;
@@ -66,21 +65,21 @@ class BoardController {
     }
 
     private void userChoice() {
-        messages.userChoice();
-        this.userChoice = -1;
-        while (this.userChoice == -1) {
-            String userChoice = scanner.nextLine();
+        messages.displayUserChoiceOptions();
+        int userChoice = -1;
+        while (userChoice == -1) {
+            String userAnswer = scanner.nextLine();
             try {
-                exceptionController.wrongFieldNumberSelected(userChoice);
-                this.userChoice = Integer.parseInt(userChoice) - 1;
-                exceptionController.chosenFieldIsAlreadySelected(board, this.userChoice);
-                applySymbol(this.userChoice, userSymbol);
+                userInputValidator.wrongFieldNumberSelected(userAnswer);
+                userChoice = Integer.parseInt(userAnswer) - 1;
+                userInputValidator.chosenFieldIsAlreadySelected(board, userChoice);
+                applySymbol(userChoice, userSymbol);
             } catch (IllegalArgumentException iae) {
                 if (iae instanceof NumberFormatException) {
                     System.err.println("You have to provide number only");
                 } else {
                     System.err.println(iae.getMessage());
-                    this.userChoice = -1;
+                    userChoice = -1;
                 }
             }
         }
@@ -111,7 +110,7 @@ class BoardController {
 
     private boolean checkDraw() {
         if (!board.containsValue(" ")) {
-            messages.itIsADraw();
+            messages.displayItIsADrawMessage();
             return true;
         }
         return false;
@@ -120,9 +119,9 @@ class BoardController {
     private boolean checkLine(int a, int b, int c) {
         if (board.get(a).equals(board.get(b)) && board.get(a).equals(board.get(c)) && !board.get(a).equals(" ")) {
             if (board.get(a).equals(userSymbol)) {
-                messages.youWon();
+                messages.displayYouWonMessage();
             } else {
-                messages.youLost();
+                messages.displayYouLostMessage();
             }
             return true;
         }

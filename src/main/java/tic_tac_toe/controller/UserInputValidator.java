@@ -2,7 +2,7 @@ package tic_tac_toe.controller;
 
 import java.util.Map;
 
-class ExceptionController {
+class UserInputValidator {
 
     void wrongSymbolSelected(String userSymbol) {
         if (!userSymbol.equals("O") && !userSymbol.equals("X")) {
