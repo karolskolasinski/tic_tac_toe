@@ -1,4 +1,4 @@
-package tic_tac_toe.controller;
+package tic_tac_toe.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -7,30 +7,30 @@ import tic_tac_toe.Messages;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-class BoardControllerTest {
+class GameTest {
 
     private Messages messages = new Messages();
-    private BoardController boardController = new BoardController(messages);
+    private Game game = new Game(messages);
 
     @BeforeEach
     void setup() {
-        boardController.initializeBoard();
+        game.initializeBoard();
     }
 
     @Test
     void endGameShouldBeFalse() {
-        boolean status = boardController.gameStatus();
+        boolean status = game.gameStatus();
 
         assertThat(status, is(false));
     }
 
     @Test
     void endGameShouldBeTrue() {
-        boardController.applySymbol(0, "X");
-        boardController.applySymbol(1, "X");
-        boardController.applySymbol(2, "X");
+        game.applySymbol(0, "X");
+        game.applySymbol(1, "X");
+        game.applySymbol(2, "X");
 
-        boolean status = boardController.gameStatus();
+        boolean status = game.gameStatus();
 
         assertThat(status, is(true));
     }

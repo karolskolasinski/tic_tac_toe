@@ -1,10 +1,10 @@
-package tic_tac_toe.controller;
+package tic_tac_toe.core;
 
 import tic_tac_toe.Messages;
 
 import java.util.Scanner;
 
-public class GameController {
+public class TicTacToe {
 
     /*VARIABLES*/
     private Messages messages = new Messages();
@@ -26,26 +26,36 @@ public class GameController {
     }
 
     /*METHODS*/
-    private void playAgain() {
-        messages.displayPlayAgainQuestion();
-        this.playAgain = null;
-        while (this.playAgain == null) {
-            String playAgain = scanner.nextLine();
-            try {
-                userInputValidator.wrongPlayAgainAnswerSelected(playAgain);
-                this.playAgain = playAgain.equalsIgnoreCase("yes");
-            } catch (IllegalArgumentException iae) {
-                System.err.println(iae.getMessage());
-            }
-        }
-    }
-
     private void setupGame() {
         messages.displayChooseSymbolMessage();
         assignSymbols();
         messages.displayChooseLevelMessage();
         assignLevel();
         messages.displayBeginMessage();
+    }
+
+    private void assignSymbols() {
+        this.userSymbol = null;
+        while (this.userSymbol == null) {
+            String userSymbol = scanner.nextLine().toUpperCase();
+            try {
+                userInputValidator.wrongSymbolSelected(userSymbol);
+                this.userSymbol = userSymbol;
+                switch (this.userSymbol) {
+                    case "O":
+                        computerSymbol = "X";
+                        break;
+                    case "0":
+                        computerSymbol = "X";
+                        break;
+                    case "X":
+                        computerSymbol = "O";
+                        break;
+                }
+            } catch (IllegalArgumentException iae) {
+                System.err.println(iae.getMessage());
+            }
+        }
     }
 
     private void assignLevel() {
@@ -61,30 +71,23 @@ public class GameController {
         }
     }
 
-    private void assignSymbols() {
-        this.userSymbol = null;
-        while (this.userSymbol == null) {
-            String userSymbol = scanner.nextLine().toUpperCase();
+    private void play() {
+        Game game = new Game(messages, scanner, userInputValidator, userSymbol, computerSymbol, level);
+        game.playByStrategy();
+    }
+
+    private void playAgain() {
+        messages.displayPlayAgainQuestion();
+        this.playAgain = null;
+        while (this.playAgain == null) {
+            String playAgain = scanner.nextLine();
             try {
-                userInputValidator.wrongSymbolSelected(userSymbol);
-                this.userSymbol = userSymbol;
-                switch (this.userSymbol) {
-                    case "O":
-                        computerSymbol = "X";
-                        break;
-                    case "X":
-                        computerSymbol = "O";
-                        break;
-                }
+                userInputValidator.wrongPlayAgainAnswerSelected(playAgain);
+                this.playAgain = playAgain.equalsIgnoreCase("yes");
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
             }
         }
-    }
-
-    private void play() {
-        BoardController boardController = new BoardController(messages, scanner, userInputValidator, userSymbol, computerSymbol, level);
-        boardController.playByStrategy();
     }
 
 

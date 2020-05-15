@@ -1,4 +1,4 @@
-package tic_tac_toe.controller;
+package tic_tac_toe.core;
 
 import tic_tac_toe.Messages;
 import tic_tac_toe.level.GameLevel;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-class BoardController {
+class Game {
 
     private GameLevel gameLevel;
     private Map<Integer, String> board = new HashMap<>(9);
@@ -21,7 +21,7 @@ class BoardController {
     private String computerSymbol;
     private String level;
 
-    BoardController(Messages messages, Scanner scanner, UserInputValidator userInputValidator, String userSymbol, String computerSymbol, String level) {
+    Game(Messages messages, Scanner scanner, UserInputValidator userInputValidator, String userSymbol, String computerSymbol, String level) {
         this.messages = messages;
         this.scanner = scanner;
         this.userInputValidator = userInputValidator;
@@ -31,7 +31,7 @@ class BoardController {
         initializeBoard();
     }
 
-    BoardController(Messages messages) {
+    Game(Messages messages) {
         this.messages = messages;
     }
 
