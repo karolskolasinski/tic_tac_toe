@@ -2,31 +2,26 @@ package tic_tac_toe.game;
 
 import tic_tac_toe.Messages;
 import tic_tac_toe.level.GameLevel;
-import tic_tac_toe.level.Hard;
-import tic_tac_toe.level.Easy;
-import tic_tac_toe.level.Medium;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 class Game {
 
-    private GameLevel gameLevel;
-    private Map<Integer, String> board = new HashMap<>(9);
+    private GameLevel level;
+    private char[][] board = new char[3][3];
     private Messages messages;
     private Scanner scanner;
     private UserInputValidator validator;
-    private String userSymbol;
-    private String computerSymbol;
+    private char human;
+    private char ai;
     private boolean playAgain = false;
 
-    Game(Messages messages, Scanner scanner, UserInputValidator userInputValidator, Character userSymbol, Character computerSymbol, GameLevel level) {
+    Game(Messages messages, Scanner scanner, UserInputValidator validator, char human, char ai, GameLevel level) {
         this.messages = messages;
         this.scanner = scanner;
-        this.userInputValidator = userInputValidator;
-        this.userSymbol = userSymbol;
-        this.computerSymbol = computerSymbol;
+        this.validator = validator;
+        this.human = human;
+        this.ai = ai;
         this.level = level;
         initializeBoard();
     }
@@ -35,18 +30,19 @@ class Game {
         this.messages = messages;
     }
 
+    /**
+     *
+     */
     void initializeBoard() {
-        board.clear();
         for (int i = 0; i < 9; i++) {
             board.put(i, " ");
         }
     }
 
-    private void setGameLevel(GameLevel gameLevel) {
-        this.gameLevel = gameLevel;
-    }
-
-    private void playWithParameters() {
+    /**
+     *
+     */
+    void playByStrategy() {
         boolean gameEnd = false;
         while (!gameEnd) {
             userChoice();
@@ -57,6 +53,9 @@ class Game {
         }
     }
 
+    /**
+     *
+     */
     private void computerChoice(boolean gameEnd) {
         if (board.containsValue(" ") && !gameEnd) {
             int computerChoice = gameLevel.computerChoice(board, computerSymbol, userSymbol);
@@ -64,6 +63,9 @@ class Game {
         }
     }
 
+    /**
+     *
+     */
     private void userChoice() {
         messages.displayUserChoiceOptions();
         int userChoice = -1;
@@ -85,10 +87,16 @@ class Game {
         }
     }
 
+    /**
+     *
+     */
     void applySymbol(int choice, String symbol) {
         board.replace(choice, symbol);
     }
 
+    /**
+     *
+     */
     boolean gameStatus() {
         /*horizontal*/
         if (checkLine(0, 1, 2)) return true;
@@ -108,6 +116,9 @@ class Game {
         return checkDraw();
     }
 
+    /**
+     *
+     */
     private boolean checkDraw() {
         if (!board.containsValue(" ")) {
             messages.displayItIsADrawMessage();
@@ -116,6 +127,9 @@ class Game {
         return false;
     }
 
+    /**
+     *
+     */
     private boolean checkLine(int a, int b, int c) {
         if (board.get(a).equals(board.get(b)) && board.get(a).equals(board.get(c)) && !board.get(a).equals(" ")) {
             if (board.get(a).equals(userSymbol)) {
@@ -126,21 +140,6 @@ class Game {
             return true;
         }
         return false;
-    }
-
-    void playByStrategy() {
-        switch (level) {
-            case "1":
-                setGameLevel(new Easy());
-                break;
-            case "2":
-                setGameLevel(new Medium());
-                break;
-            case "3":
-                setGameLevel(new Hard());
-                break;
-        }
-        playWithParameters();
     }
 
     /**

@@ -10,8 +10,8 @@ public class TicTacToe {
     private Messages messages = new Messages();
     private Scanner scanner = new Scanner(System.in);
     private UserInputValidator validator = new UserInputValidator();
-    private Character human;
-    private Character ai;
+    private char human;
+    private char ai;
     private GameLevel level;
     private boolean playAgain;
 

@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 class GameSymbols {
 
-    private Character human;
-    private Character ai;
+    private char human;
+    private char ai;
 
 }
