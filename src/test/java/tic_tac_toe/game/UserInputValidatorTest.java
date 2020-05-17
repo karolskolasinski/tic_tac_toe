@@ -1,4 +1,4 @@
-package tic_tac_toe.core;
+package tic_tac_toe.game;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

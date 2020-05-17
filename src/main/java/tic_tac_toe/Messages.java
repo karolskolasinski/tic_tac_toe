@@ -22,7 +22,7 @@ public class Messages {
     }
 
     public void displayChooseSymbolMessage() {
-        System.out.println("Select your symbol (O or X):");
+        System.out.println("Select your symbol (o or x):");
     }
 
     public void displayChooseLevelMessage() {
