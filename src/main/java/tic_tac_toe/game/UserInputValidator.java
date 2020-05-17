@@ -1,24 +1,50 @@
 package tic_tac_toe.game;
 
+import tic_tac_toe.level.Easy;
+import tic_tac_toe.level.GameLevel;
+import tic_tac_toe.level.Hard;
+import tic_tac_toe.level.Medium;
+
 import java.util.Map;
 
 class UserInputValidator {
 
-    void wrongSymbolSelected(String userSymbol) {
-        if (!userSymbol.equals("O") && !userSymbol.equals("X")) {
-            throw new IllegalArgumentException("You can choose only \"O\" or \"X\"");
+    GameSymbols validateSelectedSymbol(String userSymbol) {
+        switch (userSymbol.toUpperCase()) {
+            case "O":
+                return new GameSymbols('O', 'X');
+            case "X":
+                return new GameSymbols('X', 'O');
+            default:
+                throw new IllegalArgumentException("You can choose only \"O\" or \"X\"");
         }
     }
 
-    void wrongLevelSelected(String level) {
-        if (!level.equals("1") && !level.equals("2") && !level.equals("3")) {
-            throw new IllegalArgumentException("You can choose only 1 or 2 or 3");
+    GameLevel validateSelectedLevel(String level) {
+        switch (level) {
+            case "1":
+                return new Easy();
+            case "2":
+                return new Medium();
+            case "3":
+                return new Hard();
+            default:
+                throw new IllegalArgumentException("You can choose only 1 or 2 or 3");
         }
     }
 
-    void wrongPlayAgainAnswerSelected(String playAgain) {
-        if (!playAgain.equalsIgnoreCase("yes") && !playAgain.equalsIgnoreCase("no")) {
-            throw new IllegalArgumentException("You can choose only \"yes\" or \"no\"");
+    boolean validatePlayAgainAnswer(String playAgain) {
+        switch (playAgain.toLowerCase()) {
+            case "yes":
+                return true;
+            case "y":
+                return true;
+            case "no":
+                return false;
+            case "n":
+                return false;
+            default:
+                throw new IllegalArgumentException("You can choose only \"yes\" or \"no\"");
         }
     }
 

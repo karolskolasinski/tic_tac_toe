@@ -7,30 +7,30 @@ import tic_tac_toe.Messages;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
-class BoardTest {
+class GameTest {
 
     private Messages messages = new Messages();
-    private Board board = new Board(messages);
+    private Game game = new Game(messages);
 
     @BeforeEach
     void setup() {
-        board.initializeBoard();
+        game.initializeBoard();
     }
 
     @Test
     void endGameShouldBeFalse() {
-        boolean status = board.gameStatus();
+        boolean status = game.gameStatus();
 
         assertThat(status, is(false));
     }
 
     @Test
     void endGameShouldBeTrue() {
-        board.applySymbol(0, "X");
-        board.applySymbol(1, "X");
-        board.applySymbol(2, "X");
+        game.applySymbol(0, "X");
+        game.applySymbol(1, "X");
+        game.applySymbol(2, "X");
 
-        boolean status = board.gameStatus();
+        boolean status = game.gameStatus();
 
         assertThat(status, is(true));
     }

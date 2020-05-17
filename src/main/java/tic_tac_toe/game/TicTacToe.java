@@ -1,6 +1,7 @@
 package tic_tac_toe.game;
 
 import tic_tac_toe.Messages;
+import tic_tac_toe.level.GameLevel;
 
 import java.util.Scanner;
 
@@ -11,8 +12,8 @@ public class TicTacToe {
     private UserInputValidator validator = new UserInputValidator();
     private Character human;
     private Character ai;
-    private String level;
-    private Boolean playAgain;
+    private GameLevel level;
+    private boolean playAgain;
 
     /**
      *
@@ -22,7 +23,6 @@ public class TicTacToe {
         do {
             setup();
             play();
-            playAgain();
         } while (playAgain);
     }
 
@@ -49,34 +49,18 @@ public class TicTacToe {
      */
     private void assignSymbols(Setup setup) {
         messages.displayChooseSymbolMessage();
-        Character[] symbols = setup.assignSymbols();
-        this.human = symbols[0];
-        this.ai = symbols[1];
+        GameSymbols symbols = setup.assignSymbols();
+        this.human = symbols.getHuman();
+        this.ai = symbols.getAi();
     }
 
     /**
      *
      */
     private void play() {
-        Board board = new Board(messages, scanner, validator, human, ai, level);
-        board.playByStrategy();
-    }
-
-    /**
-     *
-     */
-    private void playAgain() {
-        messages.displayPlayAgainQuestion();
-        this.playAgain = null;
-        while (this.playAgain == null) {
-            String playAgain = scanner.nextLine();
-            try {
-                validator.wrongPlayAgainAnswerSelected(playAgain);
-                this.playAgain = playAgain.equalsIgnoreCase("yes");
-            } catch (IllegalArgumentException iae) {
-                System.err.println(iae.getMessage());
-            }
-        }
+        Game game = new Game(messages, scanner, validator, human, ai, level);
+        game.playByStrategy();
+        playAgain = game.playAgain();
     }
 
 

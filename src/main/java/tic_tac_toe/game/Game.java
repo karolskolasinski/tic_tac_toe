@@ -10,18 +10,18 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-class Board {
+class Game {
 
     private GameLevel gameLevel;
     private Map<Integer, String> board = new HashMap<>(9);
     private Messages messages;
     private Scanner scanner;
-    private UserInputValidator userInputValidator;
+    private UserInputValidator validator;
     private String userSymbol;
     private String computerSymbol;
-    private String level;
+    private boolean playAgain = false;
 
-    Board(Messages messages, Scanner scanner, UserInputValidator userInputValidator, Character userSymbol, Character computerSymbol, String level) {
+    Game(Messages messages, Scanner scanner, UserInputValidator userInputValidator, Character userSymbol, Character computerSymbol, GameLevel level) {
         this.messages = messages;
         this.scanner = scanner;
         this.userInputValidator = userInputValidator;
@@ -31,7 +31,7 @@ class Board {
         initializeBoard();
     }
 
-    Board(Messages messages) {
+    Game(Messages messages) {
         this.messages = messages;
     }
 
@@ -141,6 +141,22 @@ class Board {
                 break;
         }
         playWithParameters();
+    }
+
+    /**
+     *
+     */
+    boolean playAgain() {
+        messages.displayPlayAgainQuestion();
+        while (!this.playAgain) {
+            String playAgain = scanner.nextLine();
+            try {
+                this.playAgain = validator.validatePlayAgainAnswer(playAgain);
+            } catch (IllegalArgumentException iae) {
+                System.err.println(iae.getMessage());
+            }
+        }
+        return this.playAgain;
     }
 
 }

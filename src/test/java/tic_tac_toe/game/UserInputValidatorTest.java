@@ -17,7 +17,7 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @MethodSource("wrongSymbol")
     void exceptionShouldBeThrownIfUserProvidedWrongSymbol(String symbol) {
-        assertThrows(IllegalArgumentException.class, () -> userInputValidator.wrongSymbolSelected(symbol));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validateSelectedSymbol(symbol));
     }
 
     private static Stream<Arguments> wrongSymbol() {
@@ -34,7 +34,7 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @MethodSource("wrongLevel")
     void exceptionShouldBeThrownIfUserChosenWrongLevel(String level) {
-        assertThrows(IllegalArgumentException.class, () -> userInputValidator.wrongLevelSelected(level));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validateSelectedLevel(level));
     }
 
     private static Stream<Arguments> wrongLevel() {
@@ -49,7 +49,7 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @MethodSource("wrongAnswer")
     void exceptionShouldBeThrownWhenWrongPlayAgainAnswerSelected(String answer) {
-        assertThrows(IllegalArgumentException.class, () -> userInputValidator.wrongPlayAgainAnswerSelected(answer));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validatePlayAgainAnswer(answer));
     }
 
     private static Stream<Arguments> wrongAnswer() {
