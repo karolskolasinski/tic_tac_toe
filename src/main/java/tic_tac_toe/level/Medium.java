@@ -7,7 +7,7 @@ import java.util.Map;
 public class Medium implements GameLevel {
 
     @Override
-    public int computerChoice(Map<Integer, String> board, String computerSymbol, String userSymbol) {
+    public int placeSymbol(Map<Integer, String> board, String computerSymbol, String userSymbol) {
         List<Integer> fields = new ArrayList<>();
 
         /*horizontal*/

@@ -59,7 +59,7 @@ public class TicTacToe {
      */
     private void play() {
         Game game = new Game(messages, scanner, validator, human, ai, level);
-        game.playByStrategy();
+        game.playStrategy();
         playAgain = game.playAgain();
     }
 

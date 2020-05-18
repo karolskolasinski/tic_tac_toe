@@ -3,6 +3,8 @@ package tic_tac_toe.game;
 import tic_tac_toe.Messages;
 import tic_tac_toe.level.GameLevel;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 class Game {
@@ -14,7 +16,6 @@ class Game {
     private UserInputValidator validator;
     private char human;
     private char ai;
-    private boolean playAgain = false;
 
     Game(Messages messages, Scanner scanner, UserInputValidator validator, char human, char ai, GameLevel level) {
         this.messages = messages;
@@ -23,7 +24,6 @@ class Game {
         this.human = human;
         this.ai = ai;
         this.level = level;
-        initializeBoard();
     }
 
     Game(Messages messages) {
@@ -33,113 +33,56 @@ class Game {
     /**
      *
      */
-    void initializeBoard() {
-        for (int i = 0; i < 9; i++) {
-            board.put(i, " ");
-        }
-    }
-
-    /**
-     *
-     */
-    void playByStrategy() {
+    void playStrategy() {
         boolean gameEnd = false;
-        while (!gameEnd) {
-            userChoice();
-            gameEnd = gameStatus();
-            computerChoice(gameEnd);
-            gameEnd = gameStatus();
-            messages.drawBoard(board);
+        while (isGameOver()) {
+
         }
     }
 
     /**
      *
      */
-    private void computerChoice(boolean gameEnd) {
-        if (board.containsValue(" ") && !gameEnd) {
-            int computerChoice = gameLevel.computerChoice(board, computerSymbol, userSymbol);
-            applySymbol(computerChoice, computerSymbol);
-        }
+    private boolean isGameOver() {
+        return hasPlayerWon(human) || hasPlayerWon(ai) || getAvailableCells().isEmpty();
     }
 
     /**
      *
      */
-    private void userChoice() {
-        messages.displayUserChoiceOptions();
-        int userChoice = -1;
-        while (userChoice == -1) {
-            String userAnswer = scanner.nextLine();
-            try {
-                userInputValidator.wrongFieldNumberSelected(userAnswer);
-                userChoice = Integer.parseInt(userAnswer) - 1;
-                userInputValidator.chosenFieldIsAlreadySelected(board, userChoice);
-                applySymbol(userChoice, userSymbol);
-            } catch (IllegalArgumentException iae) {
-                if (iae instanceof NumberFormatException) {
-                    System.err.println("You have to provide number only");
-                } else {
-                    System.err.println(iae.getMessage());
-                    userChoice = -1;
+    private boolean hasPlayerWon(char player) {
+        //diagonal
+        if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] == player ||
+                board[0][2] == board[1][1] && board[0][0] == board[2][0] && board[0][0] == player) {
+            return true;
+        }
+
+        //horizontal + vertical
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] == player ||
+                    board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == player) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     */
+    private List<Point> getAvailableCells() {
+        List<Point> availableCells = new ArrayList<>();
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == Character.MIN_VALUE) {
+                    availableCells.add(new Point(i, j));
                 }
             }
         }
-    }
 
-    /**
-     *
-     */
-    void applySymbol(int choice, String symbol) {
-        board.replace(choice, symbol);
-    }
-
-    /**
-     *
-     */
-    boolean gameStatus() {
-        /*horizontal*/
-        if (checkLine(0, 1, 2)) return true;
-        if (checkLine(3, 4, 5)) return true;
-        if (checkLine(6, 7, 8)) return true;
-
-        /*vertical*/
-        if (checkLine(0, 3, 6)) return true;
-        if (checkLine(1, 4, 7)) return true;
-        if (checkLine(2, 5, 8)) return true;
-
-        /*diagonal*/
-        if (checkLine(0, 4, 8)) return true;
-        if (checkLine(2, 4, 6)) return true;
-
-        /*draw*/
-        return checkDraw();
-    }
-
-    /**
-     *
-     */
-    private boolean checkDraw() {
-        if (!board.containsValue(" ")) {
-            messages.displayItIsADrawMessage();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     *
-     */
-    private boolean checkLine(int a, int b, int c) {
-        if (board.get(a).equals(board.get(b)) && board.get(a).equals(board.get(c)) && !board.get(a).equals(" ")) {
-            if (board.get(a).equals(userSymbol)) {
-                messages.displayYouWonMessage();
-            } else {
-                messages.displayYouLostMessage();
-            }
-            return true;
-        }
-        return false;
+        return availableCells;
     }
 
     /**
@@ -147,15 +90,16 @@ class Game {
      */
     boolean playAgain() {
         messages.displayPlayAgainQuestion();
-        while (!this.playAgain) {
+
+        while (true) {
             String playAgain = scanner.nextLine();
+
             try {
-                this.playAgain = validator.validatePlayAgainAnswer(playAgain);
+                return validator.validatePlayAgainAnswer(playAgain);
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
             }
         }
-        return this.playAgain;
     }
 
 }

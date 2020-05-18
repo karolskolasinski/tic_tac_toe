@@ -1,8 +1,8 @@
 package tic_tac_toe.level;
 
-import java.util.Map;
+import tic_tac_toe.game.Point;
 
 public interface GameLevel {
 
-    int computerChoice(Map<Integer, String> board, String computerSymbol, String userSymbol);
+    boolean placeAMove(char[][] board, Point point, char player);
 }

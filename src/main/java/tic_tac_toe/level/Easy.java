@@ -8,7 +8,7 @@ public class Easy implements GameLevel {
     private Random random = new Random();
 
     @Override
-    public int computerChoice(Map<Integer, String> board, String computerSymbol, String userSymbol) {
+    public int placeSymbol(Map<Integer, String> board, String computerSymbol, String userSymbol) {
         int field;
         do {
             field = random.nextInt(9);

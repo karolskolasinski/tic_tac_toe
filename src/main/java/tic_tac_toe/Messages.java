@@ -1,7 +1,5 @@
 package tic_tac_toe;
 
-import java.util.Map;
-
 public class Messages {
 
     public void displayLogo() {
@@ -33,12 +31,24 @@ public class Messages {
         System.out.println("Do you wanna play again?");
     }
 
-    public void drawBoard(Map<Integer, String> board) {
-        System.out.println("\n " + board.get(0) + " | " + board.get(1) + " | " + board.get(2) + " \n" +
+    public void displayBoard(char[][] board) {
+//        System.out.println();
+//
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                System.out.println(board[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+//
+//        System.out.println();
+        System.out.println("\n " +
+                board[0][0] + " | " + board[0][1] + " | " + board[0][2] + " \n" +
                 "---+---+---\n" +
-                " " + board.get(3) + " | " + board.get(4) + " | " + board.get(5) + " \n" +
+                " " + board[1][0] + " | " + board[1][1] + " | " + board[1][2] + " \n" +
                 "---+---+---\n" +
-                " " + board.get(6) + " | " + board.get(7) + " | " + board.get(8) + " \n");
+                " " + board[2][0] + " | " + board[2][1] + " | " + board[2][2] + " " +
+                "\n");
     }
 
     public void displayUserChoiceOptions() {
