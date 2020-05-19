@@ -16,14 +16,17 @@ class Game {
     private UserInputValidator validator;
     private char human;
     private char ai;
+    private GameValidator gameValidator;
 
-    Game(Messages messages, Scanner scanner, UserInputValidator validator, char human, char ai, GameLevel level) {
+    public Game(GameLevel level, char[][] board, Messages messages, Scanner scanner, UserInputValidator validator, char human, char ai) {
+        this.level = level;
+        this.board = board;
         this.messages = messages;
         this.scanner = scanner;
         this.validator = validator;
         this.human = human;
         this.ai = ai;
-        this.level = level;
+        this.gameValidator = new GameValidator(this.board, this.human, this.ai);
     }
 
     Game(Messages messages) {
@@ -35,54 +38,9 @@ class Game {
      */
     void playStrategy() {
         boolean gameEnd = false;
-        while (isGameOver()) {
-
+        while (gameValidator.isGameOver()) {
+            level.aiMove(board, gameValidator);
         }
-    }
-
-    /**
-     *
-     */
-    private boolean isGameOver() {
-        return hasPlayerWon(human) || hasPlayerWon(ai) || getAvailableCells().isEmpty();
-    }
-
-    /**
-     *
-     */
-    private boolean hasPlayerWon(char player) {
-        //diagonal
-        if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] == player ||
-                board[0][2] == board[1][1] && board[0][0] == board[2][0] && board[0][0] == player) {
-            return true;
-        }
-
-        //horizontal + vertical
-        for (int i = 0; i < 3; i++) {
-            if (board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] == player ||
-                    board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == player) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     *
-     */
-    private List<Point> getAvailableCells() {
-        List<Point> availableCells = new ArrayList<>();
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] == Character.MIN_VALUE) {
-                    availableCells.add(new Point(i, j));
-                }
-            }
-        }
-
-        return availableCells;
     }
 
     /**
