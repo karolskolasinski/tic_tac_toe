@@ -7,7 +7,7 @@ import tic_tac_toe.level.Medium;
 
 import java.util.Map;
 
-class UserInputValidator {
+class InputValidator {
 
     GameSymbols validateSelectedSymbol(String userSymbol) {
         switch (userSymbol.toUpperCase()) {

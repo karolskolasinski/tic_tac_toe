@@ -7,13 +7,13 @@ import java.util.Scanner;
 class Setup {
 
     private Scanner scanner;
-    private UserInputValidator validator;
+    private InputValidator inputValidator;
     private GameSymbols symbols;
     private GameLevel level;
 
-    Setup(Scanner scanner, UserInputValidator validator) {
+    Setup(Scanner scanner, InputValidator inputValidator) {
         this.scanner = scanner;
-        this.validator = validator;
+        this.inputValidator = inputValidator;
     }
 
     /**
@@ -23,11 +23,12 @@ class Setup {
         while (symbols == null) {
             String userSymbol = scanner.nextLine().toUpperCase();
             try {
-                symbols = validator.validateSelectedSymbol(userSymbol);
+                symbols = inputValidator.validateSelectedSymbol(userSymbol);
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
             }
         }
+
         return symbols;
     }
 
@@ -38,13 +39,13 @@ class Setup {
         while (this.level == null) {
             String level = scanner.nextLine();
             try {
-                this.level = validator.validateSelectedLevel(level);
+                this.level = inputValidator.validateSelectedLevel(level);
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
             }
         }
+
         return this.level;
     }
 
 }
-

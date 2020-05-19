@@ -3,31 +3,29 @@ package tic_tac_toe.game;
 import tic_tac_toe.Messages;
 import tic_tac_toe.level.GameLevel;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 class Game {
 
-    private GameLevel level;
-    private char[][] board = new char[3][3];
     private Messages messages;
     private Scanner scanner;
-    private UserInputValidator validator;
+    private InputValidator inputValidator;
     private char human;
     private char ai;
+    private GameLevel level;
+    private char[][] board = new char[3][3];
     private GameValidator gameValidator;
 
-    public Game(GameLevel level, char[][] board, Messages messages, Scanner scanner, UserInputValidator validator, char human, char ai) {
-        this.level = level;
-        this.board = board;
+    Game(Messages messages, Scanner scanner, InputValidator inputValidator, char human, char ai, GameLevel level) {
         this.messages = messages;
         this.scanner = scanner;
-        this.validator = validator;
+        this.inputValidator = inputValidator;
         this.human = human;
         this.ai = ai;
-        this.gameValidator = new GameValidator(this.board, this.human, this.ai);
+        this.level = level;
+        this.gameValidator = new GameValidator();
     }
+
 
     Game(Messages messages) {
         this.messages = messages;
@@ -37,8 +35,8 @@ class Game {
      *
      */
     void playStrategy() {
-        boolean gameEnd = false;
-        while (gameValidator.isGameOver()) {
+        while (gameValidator.isGameOver(board, human, ai)) {
+
             level.aiMove(board, gameValidator);
         }
     }
@@ -51,9 +49,8 @@ class Game {
 
         while (true) {
             String playAgain = scanner.nextLine();
-
             try {
-                return validator.validatePlayAgainAnswer(playAgain);
+                return inputValidator.validatePlayAgainAnswer(playAgain);
             } catch (IllegalArgumentException iae) {
                 System.err.println(iae.getMessage());
             }
