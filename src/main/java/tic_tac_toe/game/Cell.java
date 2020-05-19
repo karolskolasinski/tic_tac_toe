@@ -3,6 +3,7 @@ package tic_tac_toe.game;
 import lombok.Data;
 
 @Data
+public
 class Cell {
 
     private int x;

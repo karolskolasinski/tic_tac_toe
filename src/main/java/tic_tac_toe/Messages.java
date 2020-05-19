@@ -27,8 +27,12 @@ public class Messages {
         System.out.println("Select level (1 or 2 or 3):");
     }
 
-    public void displayPlayAgainQuestion() {
-        System.out.println("Do you wanna play again?");
+    public void displayUserChoiceOptions() {
+        System.out.println("Choice field (1 to 9):");
+    }
+
+    public void displayBeginMessage() {
+        System.out.println("OK! Let's play!\n");
     }
 
     public void displayBoard(char[][] board) {
@@ -51,14 +55,6 @@ public class Messages {
                 "\n");
     }
 
-    public void displayUserChoiceOptions() {
-        System.out.println("Choice field (1 to 9):");
-    }
-
-    public void displayBeginMessage() {
-        System.out.println("OK! Let's play!\n");
-    }
-
     public void displayYouWonMessage() {
         System.out.println("YOU WON!");
     }
@@ -69,5 +65,9 @@ public class Messages {
 
     public void displayItIsADrawMessage() {
         System.out.println("IT'S A DRAW!");
+    }
+
+    public void displayPlayAgainQuestion() {
+        System.out.println("Do you wanna play again?");
     }
 }

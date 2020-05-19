@@ -1,16 +1,15 @@
 package tic_tac_toe.game;
 
-import tic_tac_toe.level.Easy;
 import tic_tac_toe.level.GameLevel;
+//import tic_tac_toe.level.Easy;
+//import tic_tac_toe.level.Medium;
 import tic_tac_toe.level.Hard;
-import tic_tac_toe.level.Medium;
 
-import java.util.Map;
 
 class InputValidator {
 
-    GameSymbols validateSelectedSymbol(String userSymbol) {
-        switch (userSymbol.toUpperCase()) {
+    GameSymbols validateSelectedSymbol(String human) {
+        switch (human.toUpperCase()) {
             case "O":
                 return new GameSymbols('O', 'X');
             case "X":
@@ -23,9 +22,9 @@ class InputValidator {
     GameLevel validateSelectedLevel(String level) {
         switch (level) {
             case "1":
-                return new Easy();
+//                return new Easy();
             case "2":
-                return new Medium();
+//                return new Medium();
             case "3":
                 return new Hard();
             default:
@@ -48,15 +47,29 @@ class InputValidator {
         }
     }
 
-    void wrongFieldNumberSelected(String userChoice) {
-        if (userChoice.length() != 1 || userChoice.equals("0")) {
-            throw new IllegalArgumentException("You can choose only fields 1 to 9");
+    Cell validateTakenFieldNumber(String human) {
+        switch (human) {
+            case "1":
+                return new Cell(0, 0);
+            case "2":
+                return new Cell(0, 1);
+            case "3":
+                return new Cell(0, 2);
+            case "4":
+                return new Cell(1, 0);
+            case "5":
+                return new Cell(1, 1);
+            case "6":
+                return new Cell(1, 2);
+            case "7":
+                return new Cell(2, 0);
+            case "8":
+                return new Cell(2, 1);
+            case "9":
+                return new Cell(2, 2);
+            default:
+                throw new IllegalArgumentException("You can choose only fields 1 to 9");
         }
     }
 
-    void chosenFieldIsAlreadySelected(Map<Integer, String> board, int userChoice) {
-        if (!board.get(userChoice).equals(" ")) {
-            throw new IllegalArgumentException("This field is already taken");
-        }
-    }
 }

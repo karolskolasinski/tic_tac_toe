@@ -15,6 +15,8 @@ class Game {
     private GameLevel level;
     private char[][] board = new char[3][3];
     private GameValidator gameValidator;
+    private Cell aiMove;
+    private User user = new User();
 
     Game(Messages messages, Scanner scanner, InputValidator inputValidator, char human, char ai, GameLevel level) {
         this.messages = messages;
@@ -26,7 +28,6 @@ class Game {
         this.gameValidator = new GameValidator();
     }
 
-
     Game(Messages messages) {
         this.messages = messages;
     }
@@ -35,9 +36,10 @@ class Game {
      *
      */
     void playStrategy() {
-        while (gameValidator.isGameOver(board, human, ai)) {
-
-            level.aiMove(board, gameValidator);
+        while (!gameValidator.isGameOver(board, human, ai)) {
+            user.humanMove(board, human, scanner, messages, inputValidator, gameValidator);
+            level.aiMove(board, human, ai, 0, ai, aiMove, gameValidator);
+            messages.displayBoard(board);
         }
     }
 

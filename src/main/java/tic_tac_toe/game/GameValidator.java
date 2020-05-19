@@ -8,13 +8,12 @@ public class GameValidator {
     /**
      *
      */
-    private boolean placeAMove(char[][] board, Cell cell, char player) {
+    public void placeAMove(char[][] board, Cell cell, char player) {
         if (board[cell.getX()][cell.getY()] != Character.MIN_VALUE) {
-            return false;
+            throw new IllegalArgumentException("This field is already taken!");
         }
 
         board[cell.getX()][cell.getY()] = player;
-        return true;
     }
 
     /**
@@ -27,7 +26,7 @@ public class GameValidator {
     /**
      *
      */
-    private boolean hasPlayerWon(char player, char[][] board) {
+    public boolean hasPlayerWon(char player, char[][] board) {
         //diagonal
         if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] == player ||
                 board[0][2] == board[1][1] && board[0][0] == board[2][0] && board[0][0] == player) {
@@ -49,7 +48,7 @@ public class GameValidator {
      *
      * @param board
      */
-    private List<Cell> getAvailableCells(char[][] board) {
+    public List<Cell> getAvailableCells(char[][] board) {
         List<Cell> availableCells = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
