@@ -1,20 +1,26 @@
 package tic_tac_toe.level;
 
+import lombok.Data;
 import tic_tac_toe.game.Cell;
 import tic_tac_toe.game.GameValidator;
 
 import java.util.List;
 
+@Data
 public class Hard implements GameLevel {
 
+    private Cell aiMove;
+
     @Override
-    public int aiMove(char[][] board, char human, char ai, int depth, char turn, Cell aiMove, GameValidator gameValidator) {
-        if (gameValidator.hasPlayerWon(human, board)) return 1;
-        if (gameValidator.hasPlayerWon(ai, board)) return -1;
+    public int aiMove(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
+        if (gameValidator.hasPlayerWon(ai, board)) return 1;
+        if (gameValidator.hasPlayerWon(human, board)) return -1;
 
         List<Cell> availableCells = gameValidator.getAvailableCells(board);
 
-        if (availableCells.isEmpty()) return 0;
+        if (availableCells.isEmpty()){
+            return 0;
+        }
 
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
@@ -24,7 +30,7 @@ public class Hard implements GameLevel {
 
             if (turn == ai) {
                 gameValidator.placeAMove(board, cell, ai);
-                int score = aiMove(board, human, ai, depth + 1, human, aiMove, gameValidator);
+                int score = aiMove(board, human, ai, depth + 1, human, gameValidator);
                 max = Math.max(score, max);
 
                 if (score >= 0) {
@@ -34,7 +40,7 @@ public class Hard implements GameLevel {
                 }
 
                 if (score == 1) {
-                    board[cell.getX()][cell.getY()] = Character.MIN_VALUE;
+                    board[cell.getX()][cell.getY()] = ' ';
                     break;
                 }
 
@@ -46,16 +52,16 @@ public class Hard implements GameLevel {
 
             } else if (turn == human) {
                 gameValidator.placeAMove(board, cell, human);
-                int score = aiMove(board, human, ai, depth + 1, ai, aiMove, gameValidator);
-                min = Math.min(score, max);
+                int score = aiMove(board, human, ai, depth + 1, ai, gameValidator);
+                min = Math.min(score, min);
 
-                if (score == -1) {
-                    board[cell.getX()][cell.getY()] = Character.MIN_VALUE;
+                if (min == -1) {
+                    board[cell.getX()][cell.getY()] = ' ';
                     break;
                 }
             }
 
-            board[cell.getX()][cell.getY()] = Character.MIN_VALUE;
+            board[cell.getX()][cell.getY()] = ' ';
         }
 
         return turn == ai ? max : min;

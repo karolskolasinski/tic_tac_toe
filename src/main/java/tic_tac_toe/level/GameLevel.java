@@ -5,5 +5,7 @@ import tic_tac_toe.game.GameValidator;
 
 public interface GameLevel {
 
-    int aiMove(char[][] board, char human, char ai, int depth, char turn, Cell aiMove, GameValidator gameValidator);
+    int aiMove(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator);
+
+    Cell getAiMove();
 }

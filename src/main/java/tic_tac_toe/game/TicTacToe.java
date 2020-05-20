@@ -33,6 +33,7 @@ public class TicTacToe {
         Setup setup = new Setup(scanner, inputValidator);
         setSymbols(setup);
         setLevel(setup);
+        messages.displayBeginMessage();
     }
 
     /**
@@ -41,7 +42,6 @@ public class TicTacToe {
     private void setLevel(Setup setup) {
         messages.displayChooseLevelMessage();
         this.level = setup.assignLevel();
-        messages.displayBeginMessage();
     }
 
     /**
@@ -62,6 +62,5 @@ public class TicTacToe {
         game.playStrategy();
         playAgain = game.playAgain();
     }
-
 
 }
