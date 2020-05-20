@@ -1,7 +1,7 @@
 package tic_tac_toe.game;
 
 import tic_tac_toe.level.GameLevel;
-//import tic_tac_toe.level.Easy;
+import tic_tac_toe.level.Easy;
 //import tic_tac_toe.level.Medium;
 import tic_tac_toe.level.Hard;
 
@@ -22,7 +22,7 @@ class InputValidator {
     GameLevel validateSelectedLevel(String level) {
         switch (level) {
             case "1":
-//                return new Easy();
+                return new Easy();
             case "2":
 //                return new Medium();
             case "3":
