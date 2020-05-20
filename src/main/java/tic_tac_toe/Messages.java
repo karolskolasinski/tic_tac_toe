@@ -1,5 +1,7 @@
 package tic_tac_toe;
 
+import tic_tac_toe.game.GameValidator;
+
 public class Messages {
 
     public void displayLogo() {
@@ -36,16 +38,6 @@ public class Messages {
     }
 
     public void displayBoard(char[][] board) {
-//        System.out.println();
-//
-//        for (int i = 0; i < 3; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                System.out.println(board[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//
-//        System.out.println();
         System.out.println("\n " +
                 board[0][0] + " | " + board[0][1] + " | " + board[0][2] + " \n" +
                 "---+---+---\n" +
@@ -55,16 +47,26 @@ public class Messages {
                 "\n");
     }
 
-    public void displayYouWonMessage() {
-        System.out.println("YOU WON!");
+    public void displaySummary(char[][] board, char human, char ai, GameValidator gameValidator) {
+        if (gameValidator.hasPlayerWon(human, board)) {
+            displayYouWonMessage();
+        } else if (gameValidator.hasPlayerWon(ai, board)) {
+            displayYouLostMessage();
+        } else if (gameValidator.isGameOver(board, human, ai)) {
+            displayItIsADrawMessage();
+        }
     }
 
-    public void displayYouLostMessage() {
-        System.out.println("YOU LOST!");
+    private void displayYouWonMessage() {
+        System.out.println("YOU WON!\n");
     }
 
-    public void displayItIsADrawMessage() {
-        System.out.println("IT'S A DRAW!");
+    private void displayYouLostMessage() {
+        System.out.println("YOU LOST!\n");
+    }
+
+    private void displayItIsADrawMessage() {
+        System.out.println("IT'S A DRAW!\n");
     }
 
     public void displayPlayAgainQuestion() {

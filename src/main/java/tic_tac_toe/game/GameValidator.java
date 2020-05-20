@@ -19,7 +19,7 @@ public class GameValidator {
     /**
      *
      */
-    boolean isGameOver(char[][] board, char human, char ai) {
+    public boolean isGameOver(char[][] board, char human, char ai) {
         return hasPlayerWon(human, board) || hasPlayerWon(ai, board) || getAvailableCells(board).isEmpty();
     }
 

@@ -48,6 +48,7 @@ class Game {
             user.humanMove(board, human, scanner, messages, inputValidator, gameValidator);
             level.aiMove(board, human, ai, 0, ai, gameValidator);
             messages.displayBoard(board);
+            messages.displaySummary(board, human, ai, gameValidator);
         }
     }
 
