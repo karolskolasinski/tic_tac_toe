@@ -12,13 +12,23 @@ public class Hard implements GameLevel {
     private Cell aiMove;
 
     @Override
-    public int aiMove(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
+    public void aiMove(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
+        minimax(board, human, ai, depth, turn, gameValidator);
+
+        try {
+            gameValidator.placeAMove(board, aiMove, ai);
+        } catch (IllegalArgumentException ignore) {
+
+        }
+    }
+
+    private int minimax(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
         if (gameValidator.hasPlayerWon(ai, board)) return 1;
         if (gameValidator.hasPlayerWon(human, board)) return -1;
 
         List<Cell> availableCells = gameValidator.getAvailableCells(board);
 
-        if (availableCells.isEmpty()){
+        if (availableCells.isEmpty()) {
             return 0;
         }
 
@@ -30,13 +40,11 @@ public class Hard implements GameLevel {
 
             if (turn == ai) {
                 gameValidator.placeAMove(board, cell, ai);
-                int score = aiMove(board, human, ai, depth + 1, human, gameValidator);
+                int score = minimax(board, human, ai, depth + 1, human, gameValidator);
                 max = Math.max(score, max);
 
-                if (score >= 0) {
-                    if (depth == 0) {
-                        aiMove = cell;
-                    }
+                if (score >= 0 && depth == 0) {
+                    aiMove = cell;
                 }
 
                 if (score == 1) {
@@ -44,15 +52,13 @@ public class Hard implements GameLevel {
                     break;
                 }
 
-                if (i == availableCells.size() - 1 && max < 0) {
-                    if (depth == 0) {
-                        aiMove = cell;
-                    }
+                if ((i == availableCells.size() - 1 && max < 0) && depth == 0) {
+                    aiMove = cell;
                 }
 
             } else if (turn == human) {
                 gameValidator.placeAMove(board, cell, human);
-                int score = aiMove(board, human, ai, depth + 1, ai, gameValidator);
+                int score = minimax(board, human, ai, depth + 1, ai, gameValidator);
                 min = Math.min(score, min);
 
                 if (min == -1) {

@@ -47,7 +47,6 @@ class Game {
         while (!gameValidator.isGameOver(board, human, ai)) {
             user.humanMove(board, human, scanner, messages, inputValidator, gameValidator);
             level.aiMove(board, human, ai, 0, ai, gameValidator);
-            gameValidator.placeAMove(board, level.getAiMove(), ai);
             messages.displayBoard(board);
         }
     }
