@@ -12,9 +12,10 @@ public class Easy implements GameLevel {
 
     @Override
     public void aiMove(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
-        List<Cell> availableCells = gameValidator.getAvailableCells(board);
-        int cellNumber = random.nextInt(availableCells.size());
-
-        gameValidator.placeAMove(board,availableCells.get(cellNumber), ai);
+        if (!gameValidator.isGameOver(board, human, ai)) {
+            List<Cell> availableCells = gameValidator.getAvailableCells(board);
+            int cellNumber = random.nextInt(availableCells.size());
+            gameValidator.placeAMove(board, availableCells.get(cellNumber), ai);
+        }
     }
 }

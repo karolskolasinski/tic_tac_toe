@@ -4,7 +4,7 @@ import tic_tac_toe.model.Cell;
 import tic_tac_toe.model.GameSymbols;
 import tic_tac_toe.level.GameLevel;
 import tic_tac_toe.level.Easy;
-//import tic_tac_toe.level.Medium;
+import tic_tac_toe.level.Medium;
 import tic_tac_toe.level.Hard;
 
 
@@ -26,7 +26,7 @@ public class InputValidator {
             case "1":
                 return new Easy();
             case "2":
-//                return new Medium();
+                return new Medium();
             case "3":
                 return new Hard();
             default:
