@@ -1,6 +1,6 @@
 package tic_tac_toe;
 
-import tic_tac_toe.game.GameValidator;
+import tic_tac_toe.validator.GameValidator;
 
 public class Messages {
 
@@ -72,4 +72,5 @@ public class Messages {
     public void displayPlayAgainQuestion() {
         System.out.println("Do you wanna play again?");
     }
+
 }

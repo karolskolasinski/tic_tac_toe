@@ -1,14 +1,16 @@
-package tic_tac_toe.game;
+package tic_tac_toe.validator;
 
+import tic_tac_toe.model.Cell;
+import tic_tac_toe.model.GameSymbols;
 import tic_tac_toe.level.GameLevel;
 import tic_tac_toe.level.Easy;
 //import tic_tac_toe.level.Medium;
 import tic_tac_toe.level.Hard;
 
 
-class InputValidator {
+public class InputValidator {
 
-    GameSymbols validateSelectedSymbol(String human) {
+    public GameSymbols validateSelectedSymbol(String human) {
         switch (human.toUpperCase()) {
             case "O":
                 return new GameSymbols('O', 'X');
@@ -19,7 +21,7 @@ class InputValidator {
         }
     }
 
-    GameLevel validateSelectedLevel(String level) {
+    public GameLevel validateSelectedLevel(String level) {
         switch (level) {
             case "1":
                 return new Easy();
@@ -32,7 +34,7 @@ class InputValidator {
         }
     }
 
-    boolean validatePlayAgainAnswer(String playAgain) {
+    public boolean validatePlayAgainAnswer(String playAgain) {
         switch (playAgain.toLowerCase()) {
             case "yes":
                 return true;
@@ -47,7 +49,7 @@ class InputValidator {
         }
     }
 
-    Cell validateTakenFieldNumber(String human) {
+    public Cell validateTakenFieldNumber(String human) {
         switch (human) {
             case "1":
                 return new Cell(0, 0);

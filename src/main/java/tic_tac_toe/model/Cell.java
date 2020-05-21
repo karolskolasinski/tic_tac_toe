@@ -1,4 +1,4 @@
-package tic_tac_toe.game;
+package tic_tac_toe.model;
 
 import lombok.Data;
 

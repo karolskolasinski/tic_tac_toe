@@ -1,4 +1,6 @@
-package tic_tac_toe.game;
+package tic_tac_toe.validator;
+
+import tic_tac_toe.model.Cell;
 
 import java.util.ArrayList;
 import java.util.List;

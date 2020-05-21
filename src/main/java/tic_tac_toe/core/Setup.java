@@ -1,6 +1,8 @@
-package tic_tac_toe.game;
+package tic_tac_toe.core;
 
 import tic_tac_toe.level.GameLevel;
+import tic_tac_toe.model.GameSymbols;
+import tic_tac_toe.validator.InputValidator;
 
 import java.util.Scanner;
 

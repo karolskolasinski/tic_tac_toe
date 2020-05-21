@@ -1,6 +1,6 @@
 package tic_tac_toe.level;
 
-import tic_tac_toe.game.GameValidator;
+import tic_tac_toe.validator.GameValidator;
 
 public interface GameLevel {
 

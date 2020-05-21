@@ -1,8 +1,8 @@
 package tic_tac_toe.level;
 
 import lombok.Data;
-import tic_tac_toe.game.Cell;
-import tic_tac_toe.game.GameValidator;
+import tic_tac_toe.model.Cell;
+import tic_tac_toe.validator.GameValidator;
 
 import java.util.List;
 

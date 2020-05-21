@@ -1,12 +1,14 @@
-package tic_tac_toe.game;
+package tic_tac_toe.model;
 
 import tic_tac_toe.Messages;
+import tic_tac_toe.validator.GameValidator;
+import tic_tac_toe.validator.InputValidator;
 
 import java.util.Scanner;
 
-class User {
+public class User {
 
-    void humanMove(char[][] board, char human, Scanner scanner, Messages messages, InputValidator inputValidator, GameValidator gameValidator) {
+    public void humanMove(char[][] board, char human, Scanner scanner, Messages messages, InputValidator inputValidator, GameValidator gameValidator) {
         boolean moveOk = false;
 
         while (!moveOk) {
