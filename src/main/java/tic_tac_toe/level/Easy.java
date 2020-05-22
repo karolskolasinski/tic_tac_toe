@@ -10,6 +10,14 @@ public class Easy implements GameLevel {
 
     private Random random = new Random();
 
+    /**
+     * @param board
+     * @param human
+     * @param ai
+     * @param depth
+     * @param turn
+     * @param gameValidator
+     */
     @Override
     public void aiMove(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
         if (!gameValidator.isGameOver(board, human, ai)) {

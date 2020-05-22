@@ -1,5 +1,6 @@
 package tic_tac_toe.validator;
 
+import tic_tac_toe.Messages;
 import tic_tac_toe.model.Cell;
 import tic_tac_toe.model.GameSymbols;
 import tic_tac_toe.level.GameLevel;
@@ -7,9 +8,14 @@ import tic_tac_toe.level.Easy;
 import tic_tac_toe.level.Medium;
 import tic_tac_toe.level.Hard;
 
+import java.util.Scanner;
+
 
 public class InputValidator {
 
+    /**
+     * @param human
+     */
     public GameSymbols validateSelectedSymbol(String human) {
         switch (human.toUpperCase()) {
             case "O":
@@ -21,6 +27,9 @@ public class InputValidator {
         }
     }
 
+    /**
+     * @param level
+     */
     public GameLevel validateSelectedLevel(String level) {
         switch (level) {
             case "1":
@@ -34,6 +43,9 @@ public class InputValidator {
         }
     }
 
+    /**
+     * @param playAgain
+     */
     public boolean validatePlayAgainAnswer(String playAgain) {
         switch (playAgain.toLowerCase()) {
             case "yes":
@@ -49,8 +61,11 @@ public class InputValidator {
         }
     }
 
-    public Cell validateTakenFieldNumber(String human) {
-        switch (human) {
+    /**
+     * @param userMove
+     */
+    public Cell validateTakenFieldNumber(String userMove) {
+        switch (userMove) {
             case "1":
                 return new Cell(0, 0);
             case "2":
@@ -74,4 +89,21 @@ public class InputValidator {
         }
     }
 
+    public void humanMove(char[][] board, char human, Scanner scanner, Messages messages, GameValidator gameValidator) {
+        boolean moveOk = false;
+
+        while (!moveOk) {
+            messages.displayUserChoiceOptions();
+            String userMove = scanner.nextLine();
+
+            try {
+                Cell cell = validateTakenFieldNumber(userMove);
+                gameValidator.placeAMove(board, cell, human);
+                moveOk = true;
+            } catch (IllegalArgumentException e) {
+                System.err.println(e.getMessage());
+            }
+        }
+
+    }
 }

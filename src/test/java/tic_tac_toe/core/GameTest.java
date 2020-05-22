@@ -2,15 +2,16 @@ package tic_tac_toe.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tic_tac_toe.Messages;
+import tic_tac_toe.model.Cell;
+import tic_tac_toe.validator.GameValidator;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 class GameTest {
 
-    private Messages messages = new Messages();
-    private Game game = new Game(messages);
+    private Game game = new Game();
+    private GameValidator gameValidator = new GameValidator();
 
     @BeforeEach
     void setup() {
@@ -18,21 +19,21 @@ class GameTest {
     }
 
     @Test
-    void endGameShouldBeFalse() {
-//        boolean status = game.isGameOver();
+    void theNewGameShouldBeNotOver() {
+        boolean status = gameValidator.isGameOver(game.getBoard(), 'X', 'O');
 
-//        assertThat(status, is(false));
+        assertThat(status, is(false));
     }
 
     @Test
-    void endGameShouldBeTrue() {
-//        game.applySymbol(0, "X");
-//        game.applySymbol(1, "X");
-//        game.applySymbol(2, "X");
+    void theGameShouldBeOverWhenThereIsThreeSymbolsInARow() {
+        gameValidator.placeAMove(game.getBoard(), new Cell(0, 0), 'X');
+        gameValidator.placeAMove(game.getBoard(), new Cell(0, 1), 'X');
+        gameValidator.placeAMove(game.getBoard(), new Cell(0, 2), 'X');
 
-//        boolean status = game.isGameOver();
+        boolean status = gameValidator.isGameOver(game.getBoard(), 'X', 'O');
 
-//        assertThat(status, is(true));
+        assertThat(status, is(true));
     }
 
 }

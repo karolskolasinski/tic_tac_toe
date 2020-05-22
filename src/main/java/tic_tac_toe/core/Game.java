@@ -1,13 +1,16 @@
 package tic_tac_toe.core;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import tic_tac_toe.Messages;
 import tic_tac_toe.level.GameLevel;
-import tic_tac_toe.model.User;
 import tic_tac_toe.validator.GameValidator;
 import tic_tac_toe.validator.InputValidator;
 
 import java.util.Scanner;
 
+@NoArgsConstructor
+@Data
 class Game {
 
     private Messages messages;
@@ -17,8 +20,8 @@ class Game {
     private char ai;
     private GameLevel level;
     private char[][] board = new char[3][3];
-    private GameValidator gameValidator;
-    private User user = new User();
+    private GameValidator gameValidator = new GameValidator();
+
 
     Game(Messages messages, Scanner scanner, InputValidator inputValidator, char human, char ai, GameLevel level) {
         this.messages = messages;
@@ -27,10 +30,12 @@ class Game {
         this.human = human;
         this.ai = ai;
         this.level = level;
-        this.gameValidator = new GameValidator();
         initializeBoard();
     }
 
+    /**
+     *
+     */
     void initializeBoard() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -39,16 +44,12 @@ class Game {
         }
     }
 
-    Game(Messages messages) {
-        this.messages = messages;
-    }
-
     /**
      *
      */
     void playStrategy() {
         while (!gameValidator.isGameOver(board, human, ai)) {
-            user.humanMove(board, human, scanner, messages, inputValidator, gameValidator);
+            inputValidator.humanMove(board, human, scanner, messages, gameValidator);
             level.aiMove(board, human, ai, 0, ai, gameValidator);
             messages.displayBoard(board);
             messages.displaySummary(board, human, ai, gameValidator);

@@ -8,7 +8,9 @@ import java.util.List;
 public class GameValidator {
 
     /**
-     *
+     * @param board
+     * @param cell
+     * @param player
      */
     public void placeAMove(char[][] board, Cell cell, char player) {
         if (board[cell.getX()][cell.getY()] != ' ') {
@@ -26,7 +28,8 @@ public class GameValidator {
     }
 
     /**
-     *
+     * @param player
+     * @param board
      */
     public boolean hasPlayerWon(char player, char[][] board) {
         //diagonal

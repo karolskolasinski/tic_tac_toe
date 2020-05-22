@@ -3,21 +3,20 @@ package tic_tac_toe.core;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import tic_tac_toe.validator.InputValidator;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserInputValidatorTest {
 
-//    private UserInputValidator userInputValidator = new UserInputValidator();
+    private InputValidator userInputValidator = new InputValidator();
 
     @ParameterizedTest
     @MethodSource("wrongSymbol")
     void exceptionShouldBeThrownIfUserProvidedWrongSymbol(String symbol) {
-//        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validateSelectedSymbol(symbol));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validateSelectedSymbol(symbol));
     }
 
     private static Stream<Arguments> wrongSymbol() {
@@ -34,7 +33,7 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @MethodSource("wrongLevel")
     void exceptionShouldBeThrownIfUserChosenWrongLevel(String level) {
-//        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validateSelectedLevel(level));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validateSelectedLevel(level));
     }
 
     private static Stream<Arguments> wrongLevel() {
@@ -49,7 +48,7 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @MethodSource("wrongAnswer")
     void exceptionShouldBeThrownWhenWrongPlayAgainAnswerSelected(String answer) {
-//        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validatePlayAgainAnswer(answer));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validatePlayAgainAnswer(answer));
     }
 
     private static Stream<Arguments> wrongAnswer() {
@@ -66,39 +65,19 @@ class UserInputValidatorTest {
     @ParameterizedTest
     @MethodSource("wrongFieldNumber")
     void exceptionShouldBeThrownWhenWrongFieldNumberSelected(String field) {
-//        assertThrows(IllegalArgumentException.class, () -> userInputValidator.wrongFieldNumberSelected(field));
+        assertThrows(IllegalArgumentException.class, () -> userInputValidator.validateTakenFieldNumber(field));
     }
 
     private static Stream<Arguments> wrongFieldNumber() {
         return Stream.of(
                 Arguments.of(""),
+                Arguments.of(" "),
+                Arguments.of("-1"),
+                Arguments.of("-0"),
                 Arguments.of("0"),
-                Arguments.of("12"),
+                Arguments.of("10"),
                 Arguments.of("123")
         );
     }
-
-    @ParameterizedTest
-    @MethodSource("selectedField")
-    void exceptionShouldBeThrownWhenChosenFieldIsAlreadySelected(int field) {
-        Map<Integer, String> board = new HashMap<>(9);
-
-        for (int i = 0; i < 9; i++) {
-            board.put(i, " ");
-        }
-
-        board.replace(0, "X");
-        board.replace(1, "O");
-
-//        assertThrows(IllegalArgumentException.class, () -> userInputValidator.chosenFieldIsAlreadySelected(board, field));
-    }
-
-    private static Stream<Arguments> selectedField() {
-        return Stream.of(
-                Arguments.of(0),
-                Arguments.of(1)
-        );
-    }
-
 
 }

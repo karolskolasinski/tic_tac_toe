@@ -11,6 +11,14 @@ public class Hard implements GameLevel {
 
     private Cell aiMove;
 
+    /**
+     * @param board
+     * @param human
+     * @param ai
+     * @param depth
+     * @param turn
+     * @param gameValidator
+     */
     @Override
     public void aiMove(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
         minimax(board, human, ai, depth, turn, gameValidator);
@@ -22,6 +30,9 @@ public class Hard implements GameLevel {
         }
     }
 
+    /**
+     *
+     */
     private int minimax(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
         if (gameValidator.hasPlayerWon(ai, board)) return 1;
         if (gameValidator.hasPlayerWon(human, board)) return -1;

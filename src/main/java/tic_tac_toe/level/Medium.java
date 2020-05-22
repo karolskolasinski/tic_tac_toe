@@ -6,12 +6,19 @@ import tic_tac_toe.validator.GameValidator;
 import java.util.List;
 import java.util.Random;
 
-
 public class Medium implements GameLevel {
 
     private Random random = new Random();
     private char[][] board;
 
+    /**
+     * @param board
+     * @param human
+     * @param ai
+     * @param depth
+     * @param turn
+     * @param gameValidator
+     */
     @Override
     public void aiMove(char[][] board, char human, char ai, int depth, char turn, GameValidator gameValidator) {
         this.board = board;
@@ -46,6 +53,12 @@ public class Medium implements GameLevel {
         }
     }
 
+    /**
+     * @param board
+     * @param player
+     * @param ai
+     * @param i
+     */
     private boolean checkHorizontalLines(char[][] board, char player, char ai, int i) {
         if (checkLineHorizontal(i, player, 0, 1, 2)) {
             board[i][2] = ai;
@@ -64,6 +77,12 @@ public class Medium implements GameLevel {
         return false;
     }
 
+    /**
+     * @param board
+     * @param player
+     * @param ai
+     * @param i
+     */
     private boolean checkVerticalLines(char[][] board, char player, char ai, int i) {
         if (checkLineVertical(i, player, 0, 1, 2)) {
             board[2][i] = ai;
@@ -82,10 +101,24 @@ public class Medium implements GameLevel {
         return false;
     }
 
+    /**
+     * @param i
+     * @param player
+     * @param one
+     * @param two
+     * @param three
+     */
     private boolean checkLineHorizontal(int i, char player, int one, int two, int three) {
         return board[i][one] == player && board[i][two] == player && board[i][three] == ' ';
     }
 
+    /**
+     * @param i
+     * @param player
+     * @param one
+     * @param two
+     * @param three
+     */
     private boolean checkLineVertical(int i, char player, int one, int two, int three) {
         return board[one][i] == player && board[two][i] == player && board[three][i] == ' ';
     }
