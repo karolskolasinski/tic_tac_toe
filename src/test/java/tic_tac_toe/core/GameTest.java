@@ -10,8 +10,8 @@ import static org.hamcrest.Matchers.is;
 
 class GameTest {
 
-    private Game game = new Game();
-    private GameValidator gameValidator = new GameValidator();
+    private final Game game = new Game();
+    private final GameValidator gameValidator = new GameValidator();
 
     @BeforeEach
     void setup() {

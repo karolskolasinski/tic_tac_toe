@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserInputValidatorTest {
 
-    private InputValidator userInputValidator = new InputValidator();
+    private final InputValidator userInputValidator = new InputValidator();
 
     @ParameterizedTest
     @MethodSource("wrongSymbol")
