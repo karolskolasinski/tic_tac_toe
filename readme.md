@@ -5,7 +5,7 @@ Tic-tac-toe (American English), noughts and crosses (British English), or Xs and
 
 source: [Wikipedia](https://en.wikipedia.org/wiki/Tic_Tac_Toe)
 
-###### Run
+##### Run
 
 To run program type in the console:
 
