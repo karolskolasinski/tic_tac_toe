@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Medium implements GameLevel {
 
-    private Random random = new Random();
+    private final Random random = new Random();
     private char[][] board;
 
     /**

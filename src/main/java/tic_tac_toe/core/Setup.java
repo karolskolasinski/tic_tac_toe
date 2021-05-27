@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 class Setup {
 
-    private Scanner scanner;
-    private InputValidator inputValidator;
+    private final Scanner scanner;
+    private final InputValidator inputValidator;
     private GameSymbols symbols;
     private GameLevel level;
 

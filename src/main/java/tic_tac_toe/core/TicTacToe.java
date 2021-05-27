@@ -9,9 +9,9 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-    private Messages messages = new Messages();
-    private Scanner scanner = new Scanner(System.in);
-    private InputValidator inputValidator = new InputValidator();
+    private final Messages messages = new Messages();
+    private final Scanner scanner = new Scanner(System.in);
+    private final InputValidator inputValidator = new InputValidator();
     private char human;
     private char ai;
     private GameLevel level;
